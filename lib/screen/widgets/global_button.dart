@@ -1,39 +1,55 @@
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-import '../../utils/color/app_colors.dart';
 import '../../utils/style/app_text_style.dart';
 
-Widget globalButton({
-  required String title,
-  required VoidCallback onTap,
-  double radius = 5,
-  Color color = AppColors.c2C557D,
-  TextStyle? style,
-  double buttonHeight = 20,
-  double buttonWidth = 50,
-  bool isLoading = false
-}) {
-  return ZoomTapAnimation(
-    onTap: onTap,
-    child: Container(
-      decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(radius.w)
-      ),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: buttonWidth.w, vertical: buttonHeight.h),
-        child: Center(
-          child: isLoading?const CupertinoActivityIndicator(color: Colors.white,):Text(
-            title,
-            style:  style ?? AppTextStyle.medium.copyWith(
-              color: Colors.white,
+class LoginButton extends StatefulWidget {
+  const LoginButton({
+    super.key,
+    required this.onTap,
+    required this.isLoading,
+    required this.success,
+    required this.title,
+  });
+
+  final VoidCallback onTap;
+  final bool isLoading,success ;
+  final String title;
+
+  @override
+  State<LoginButton> createState() => _LoginButtonState();
+}
+
+class _LoginButtonState extends State<LoginButton> {
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Center(
+        child: AnimatedContainer(
+          decoration: BoxDecoration(
+            color: Colors.blueAccent,
+            borderRadius: widget.isLoading?null:BorderRadius.circular(16.w),
+          ),
+          duration: const Duration(seconds: 1),
+          curve: Curves.linear,
+          width: widget.isLoading ? 70.h : 300.w,
+          height: 55.h,
+          child: Center(
+            child: widget.isLoading || widget.success
+                ? const CupertinoActivityIndicator(color: Colors.white)
+                : Text(
+              widget.title,
+              style: AppTextStyle.bold.copyWith(
+                color: Colors.white,
+                fontSize: 18.w,
+              ),
             ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

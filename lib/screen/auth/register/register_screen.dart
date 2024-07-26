@@ -128,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         errorText: "password_error".tr(),
                       ),
                       25.boxH(),
-                      globalButton(
+                      LoginButton(
                         title: 'register'.tr(),
                         onTap: state.status == FormsStatus.success? (){}:() {
                           if (_formKey.currentState!.validate()) {
@@ -139,9 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             );
                           }
                         },
-                        buttonHeight: 16,
-                        buttonWidth: 70,
-                        isLoading: state.status == FormsStatus.loading ? true : state.status == FormsStatus.error ? false : false,
+                        isLoading: state.status == FormsStatus.loading ,
+                        success: state.status == FormsStatus.success,
                       ),
                       15.boxH(),
                       16.boxH(),

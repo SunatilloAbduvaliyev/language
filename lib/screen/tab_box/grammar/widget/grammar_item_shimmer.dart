@@ -1,7 +1,6 @@
 import 'package:english/screen/widgets/shimmers/shimmer_item.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../widgets/shimmers/shimmer_circle.dart';
 

@@ -29,3 +29,65 @@ extension ContextExtension on BuildContext {
     return screenHeight;
   }
 }
+
+
+extension PaddingExtension on Widget {
+  // Barcha tomonlar uchun bir xil padding
+  Widget paddingAll(double value) => Padding(
+    padding: EdgeInsets.all(value),
+    child: this,
+  );
+
+  // Faqat yuqori qism uchun padding
+  Widget paddingTop(double value) => Padding(
+    padding: EdgeInsets.only(top: value),
+    child: this,
+  );
+
+  // Faqat pastki qism uchun padding
+  Widget paddingBottom(double value) => Padding(
+    padding: EdgeInsets.only(bottom: value),
+    child: this,
+  );
+
+  // Faqat chap qism uchun padding
+  Widget paddingLeft(double value) => Padding(
+    padding: EdgeInsets.only(left: value),
+    child: this,
+  );
+
+  // Faqat o'ng qism uchun padding
+  Widget paddingRight(double value) => Padding(
+    padding: EdgeInsets.only(right: value),
+    child: this,
+  );
+
+  // Gorizontal (chap va o'ng) uchun padding
+  Widget paddingHorizontal(double value) => Padding(
+    padding: EdgeInsets.symmetric(horizontal: value),
+    child: this,
+  );
+
+  // Vertikal (yuqori va pastki) uchun padding
+  Widget paddingVertical(double value) => Padding(
+    padding: EdgeInsets.symmetric(vertical: value),
+    child: this,
+  );
+
+  // To'liq moslashuvchan padding
+  Widget padding({
+    double top = 0,
+    double bottom = 0,
+    double left = 0,
+    double right = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          top: top,
+          bottom: bottom,
+          left: left,
+          right: right,
+        ),
+        child: this,
+      );
+}

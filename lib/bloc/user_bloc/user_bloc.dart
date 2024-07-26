@@ -9,8 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState.initialValue()) {
     on<InsertUserEvent>(_insertUser);
-    on<FetchAllUserData>(_fetchAllUser);
-    on<FetchUserData>(_fetUser);
+    on<FetchAllUserEvent>(_fetchAllUser);
+    on<FetchUserEvent>(_fetUser);
+    on<InitialLikeUserEvent>(_initialLikeUser);
   }
 
   Future<void> _insertUser(
@@ -35,8 +36,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _fetchAllUser(
-      FetchAllUserData event, Emitter<UserState> emit) async {
+  Future<void> _fetchAllUser(FetchAllUserEvent event,
+      Emitter<UserState> emit) async {
     emit(state.copyWith(status: FormsStatus.loading));
     NetworkResponse response = await getIt<UserRepository>().fetchAllUsers();
     if (response.errorMessage.isEmpty) {
@@ -56,7 +57,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _fetUser(FetchUserData event, Emitter<UserState> emit) async {
+  Future<void> _fetUser(FetchUserEvent event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: FormsStatus.loading));
     NetworkResponse response =
         await getIt<UserRepository>().fetchDocIdUser(docId: event.userDocId);
@@ -75,5 +76,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         ),
       );
     }
+  }
+
+  void _initialLikeUser(InitialLikeUserEvent event, Emitter<UserState> emit) {
+    emit(state.copyWith(userData: event.userModel));
   }
 }

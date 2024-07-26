@@ -8,6 +8,7 @@ import 'package:english/screen/route.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
@@ -37,7 +38,15 @@ class MyApp extends StatelessWidget {
     height = context.getHeight();
     return  MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.cF3F3F3
+        scaffoldBackgroundColor: AppColors.cF3F3F3,
+        appBarTheme: const AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.dark,
+            statusBarColor: Colors.transparent,
+          ),
+          backgroundColor: AppColors.cF3F3F3
+        )
       ),
       locale: context.locale,
       localizationsDelegates: context.localizationDelegates,

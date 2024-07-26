@@ -25,7 +25,7 @@ class InputText extends StatefulWidget {
 }
 
 class _InputTextState extends State<InputText> {
-  bool isVisible = false;
+  bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _InputTextState extends State<InputText> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       scrollPadding: EdgeInsets.symmetric(horizontal: 10.w),
       style: AppTextStyle.regular,
-      obscureText: isVisible,
+      obscureText: widget.isPassword?isVisible:false,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return widget.errorText;

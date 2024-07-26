@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
-import 'package:english/cubit/like_cubit/like_cubit.dart';
 import 'package:english/screen/tab_box/add_word/add_word_screen.dart';
 import 'package:english/screen/tab_box/chat_bot/chat_bot_screen.dart';
 import 'package:english/screen/tab_box/grammar/grammer_screen.dart';
@@ -14,7 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../bloc/user_bloc/user_bloc.dart';
 import '../../cubit/auth_cubit/auth_cubit.dart';
-import '../../cubit/grammar_cubit/grammar_cubit.dart';
 import '../../cubit/tab_box_cubit/tab_box_cubit.dart';
 import '../../data/model/forms_status.dart';
 import '../../utils/images/app_images.dart';
@@ -45,7 +43,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
   ];
 
   void _initFetchUser(String docId) {
-    context.read<UserBloc>().add(FetchUserData(userDocId: docId));
+    context.read<UserBloc>().add(FetchUserEvent(userDocId: docId));
   }
 
 
@@ -53,10 +51,6 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
   void initState() {
     super.initState();
     Future.microtask(() async {
-      debugPrint('grammar chiqirilmoqda new isolate start');
-      context.read<GrammarCubit>().fetAllGrammar();
-      debugPrint('grammar chiqirilmoqda old isolate run');
-      debugPrint('grammar chiqirilmoqda old isolate run');
       if (context.read<AuthCubit>().state.status == FormsStatus.pure) {
         String userDocUid = FirebaseAuth.instance.currentUser!.uid;
         _initFetchUser(userDocUid);

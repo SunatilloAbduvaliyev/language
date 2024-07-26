@@ -1,10 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:english/bloc/user_bloc/user_event.dart';
+import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
 import 'package:english/screen/widgets/change_language_button.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/user_bloc/user_bloc.dart';
 import '../../../cubit/auth_cubit/auth_cubit.dart';
 import '../../../cubit/auth_cubit/auth_state.dart';
 import '../../../data/model/forms_status.dart';
@@ -29,6 +32,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    Future.microtask((){
+      context.read<GrammarCubit>().fetAllGrammar();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         isPassword: true,
                         errorText: "password_error".tr(),
                       ),
-                      50.boxH(),
-                      globalButton(
+                      30.boxH(),
+                      LoginButton(
                         title: 'login'.tr(),
                         onTap: state.status == FormsStatus.success
                             ? () {}
@@ -109,9 +120,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       );
                                 }
                               },
-                        buttonHeight: 16,
-                        buttonWidth: 125,
                         isLoading: state.status == FormsStatus.loading,
+                        success: state.status == FormsStatus.success,
                       ),
                       16.boxH(),
                       Center(
@@ -135,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   currentState.status == FormsStatus.success,
               listener: (BuildContext context, AuthState state) {
                 if (state.status == FormsStatus.success) {
+                  context.read<UserBloc>().add(FetchUserEvent(userDocId: state.user!.uid));
                   Navigator.pushNamed(context, RouteName.tabBoxScreen);
                 }
                 if (state.status == FormsStatus.error) {

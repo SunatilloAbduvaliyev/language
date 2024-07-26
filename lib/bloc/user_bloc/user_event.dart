@@ -14,10 +14,10 @@ class InsertUserEvent extends UserEvent with EquatableMixin {
       ];
 }
 
-class FetchUserData extends UserEvent with EquatableMixin {
+class FetchUserEvent extends UserEvent with EquatableMixin {
   final String userDocId;
 
-  FetchUserData({
+  FetchUserEvent({
     required this.userDocId,
   });
 
@@ -27,4 +27,8 @@ class FetchUserData extends UserEvent with EquatableMixin {
       ];
 }
 
-class FetchAllUserData extends UserEvent {}
+class FetchAllUserEvent extends UserEvent {}
+class InitialLikeUserEvent extends UserEvent {
+  final UserModel userModel;
+  InitialLikeUserEvent({required this.userModel});
+}

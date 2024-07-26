@@ -3,4 +3,5 @@ enum FormsStatus{
   loading,
   success,
   error,
+  updateLoading,
 }
