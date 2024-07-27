@@ -36,7 +36,7 @@ Widget grammarItem({
           grammarModel.subjectName,
           style: AppTextStyle.semiBold,
         ),
-        BlocConsumer<LikeCubit, LikeState>(
+        BlocBuilder<LikeCubit, LikeState>(
           builder: (BuildContext context, LikeState state) {
             if (state.status == FormsStatus.loading || state.status == FormsStatus.pure) {
               return Row(
@@ -112,11 +112,6 @@ Widget grammarItem({
                 ),
               ],
             );
-          },
-          listenWhen: (oldState, currentState) => currentState.insertLike == true,
-          listener: (BuildContext context, LikeState state ){
-            context.read<UserBloc>().add(InitialLikeUserEvent(userModel: state.userModel));
-            context.read<LikeCubit>().insertLikeFinish();
           },
         ),
       ],

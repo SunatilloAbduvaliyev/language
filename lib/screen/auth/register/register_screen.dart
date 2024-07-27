@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import '../../../bloc/user_bloc/user_event.dart';
 import '../../../cubit/auth_cubit/auth_cubit.dart';
 import '../../../cubit/auth_cubit/auth_state.dart';
 import '../../../data/model/forms_status.dart';
+import '../../../data/model/grammar/grammar_model.dart';
 import '../../../data/model/user/user_model.dart';
 import '../../../utils/color/app_colors.dart';
 import '../../../utils/constants/constants.dart';
@@ -166,16 +168,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
               listener: (BuildContext context, AuthState state) {
                 if (state.status == FormsStatus.success) {
                   UserModel userModel = UserModel.initialValue();
-
                   userModel = userModel.copyWith(
                     firstName: _firstNameController.text,
                     lastName: _lastNameController.text,
                   );
-                  context.read<UserBloc>().add(
-                    InsertUserEvent(
-                      insertUserData: userModel,
-                    ),
-                  );
+                  if(context.read<GrammarCubit>().state.status == FormsStatus.success){
+                    List<GrammarModel> grammarLikes = context.read<GrammarCubit>().state.grammarData;
+                    context.read<UserBloc>().add(
+                      InsertUserEvent(
+                          insertUserData: userModel,
+                          isGrammarSuccess: true,
+                          grammarLikes: grammarLikes,
+                      ),
+                    );
+                  }else{
+                    context.read<UserBloc>().add(
+                      InsertUserEvent(
+                        insertUserData: userModel,
+                        isGrammarSuccess: false,
+                        grammarLikes: [],
+                      ),
+                    );
+                  }
                   Navigator.pushReplacementNamed(context, RouteName.tabBoxScreen);
                 }
                 if (state.status == FormsStatus.error) {

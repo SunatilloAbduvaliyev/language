@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
+import 'package:english/data/model/grammar/grammar_model.dart';
 import 'package:english/screen/widgets/change_language_button.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +146,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   currentState.status == FormsStatus.success,
               listener: (BuildContext context, AuthState state) {
                 if (state.status == FormsStatus.success) {
-                  context.read<UserBloc>().add(FetchUserEvent(userDocId: state.user!.uid));
+                  if (context.read<GrammarCubit>().state.status ==
+                      FormsStatus.success) {
+                    List<GrammarModel> grammarData =
+                        context.read<GrammarCubit>().state.grammarData;
+                    context.read<UserBloc>().add(
+                          LoginInsertLikeUserEvent(
+                            userUid: state.user!.uid,
+                            grammarData: grammarData,
+                          ),
+                        );
+                  } else {
+                    context.read<UserBloc>().add(
+                          FetchUserEvent(
+                            userDocId: state.user!.uid,
+                          ),
+                        );
+                  }
                   Navigator.pushNamed(context, RouteName.tabBoxScreen);
                 }
                 if (state.status == FormsStatus.error) {

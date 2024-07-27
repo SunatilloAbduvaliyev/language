@@ -7,12 +7,14 @@ class UserState {
   final FormsStatus status;
   final UserModel userData;
   final List<UserModel> allUserData;
+  final bool isGrammarSuccess;
 
   UserState({
     required this.errorMessage,
     required this.status,
     required this.userData,
     required this.allUserData,
+    required this.isGrammarSuccess,
   });
 
   UserState copyWith({
@@ -20,12 +22,14 @@ class UserState {
     FormsStatus? status,
     UserModel? userData,
     List<UserModel>? allUserData,
+    bool? isGrammarSuccess,
   }) {
     return UserState(
       errorMessage: errorMessage ?? this.errorMessage,
       status: status ?? this.status,
       userData: userData ?? this.userData,
       allUserData: allUserData ?? this.allUserData,
+      isGrammarSuccess: isGrammarSuccess ?? this.isGrammarSuccess,
     );
   }
 
@@ -34,5 +38,6 @@ class UserState {
         status: FormsStatus.pure,
         userData: UserModel.initialValue(),
         allUserData: [],
+        isGrammarSuccess: false,
       );
 }
