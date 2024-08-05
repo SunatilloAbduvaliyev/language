@@ -1,6 +1,6 @@
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
-import '../grammar_item_shimmer.dart';
+import '../shimmer/grammar_item_shimmer.dart';
 
 Widget grammarBuildLoading() {
   return Padding(

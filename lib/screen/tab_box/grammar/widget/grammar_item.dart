@@ -1,4 +1,3 @@
-import 'package:english/bloc/user_bloc/user_event.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
 import 'package:english/cubit/like_cubit/like_cubit.dart';
 import 'package:english/data/model/forms_status.dart';
@@ -8,7 +7,6 @@ import 'package:english/screen/widgets/like_button.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../bloc/user_bloc/user_bloc.dart';
 import '../../../../cubit/like_cubit/like_state.dart';
 import '../../../../data/model/grammar/grammar_model.dart';
@@ -22,6 +20,7 @@ Widget grammarItem({
 }) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+    margin: EdgeInsets.only(bottom: 7.h),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20.w),
       border: Border.all(
@@ -32,9 +31,11 @@ Widget grammarItem({
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          grammarModel.subjectName,
-          style: AppTextStyle.semiBold,
+        Expanded(
+          child: Text(
+            grammarModel.subjectName,
+            style: AppTextStyle.semiBold,
+          ),
         ),
         BlocBuilder<LikeCubit, LikeState>(
           builder: (BuildContext context, LikeState state) {

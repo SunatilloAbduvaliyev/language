@@ -2,7 +2,7 @@ import 'package:english/screen/widgets/shimmers/shimmer_item.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/shimmers/shimmer_circle.dart';
+import '../../../../widgets/shimmers/shimmer_circle.dart';
 
 Widget grammarItemShimmer() {
   return Container(
