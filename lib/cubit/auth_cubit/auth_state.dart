@@ -5,13 +5,11 @@ class AuthState {
   final FormsStatus status;
   final String errorMessage;
   final User? user;
-  final bool isGoogle;
 
   AuthState({
     required this.status,
     required this.errorMessage,
     required this.user,
-    required this.isGoogle,
   });
 
   AuthState copyWith({
@@ -24,7 +22,6 @@ class AuthState {
       user: user ?? this.user,
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
-      isGoogle: isGoogle ?? this.isGoogle,
     );
   }
 
@@ -32,6 +29,5 @@ class AuthState {
     status: FormsStatus.pure,
     errorMessage: '',
     user: null,
-    isGoogle: false,
   );
 }

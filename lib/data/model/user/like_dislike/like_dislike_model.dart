@@ -1,43 +1,50 @@
 class LikeDislikeModel {
-  final String contentName;
+  final int contentId;
   final bool like;
   final bool disLike;
+  final String contentUid;
 
   LikeDislikeModel({
     required this.like,
     required this.disLike,
-    required this.contentName,
+    required this.contentId,
+    required this.contentUid,
   });
 
   factory LikeDislikeModel.fromJson(Map<String, dynamic> json) {
     return LikeDislikeModel(
       like: json['like'] as bool? ?? false,
       disLike: json['dis_like'] as bool? ?? false,
-      contentName: json['content_name'] as String? ?? '',
+      contentId: json['content_id'] as int? ?? 0,
+      contentUid: json['content_uid'] as String? ?? ''
     );
   }
 
   LikeDislikeModel copyWith({
     bool? like,
     bool? disLike,
-    String? contentName,
+    int? contentId,
+    String? contentUid,
   }) {
     return LikeDislikeModel(
       like: like ?? this.like,
       disLike: disLike ?? this.disLike,
-      contentName: contentName ?? this.contentName,
+      contentId: contentId ?? this.contentId,
+      contentUid: contentUid ?? this.contentUid,
     );
   }
 
   static LikeDislikeModel initialValue() => LikeDislikeModel(
         like: false,
         disLike: false,
-        contentName: '',
+        contentId: 0,
+        contentUid: '',
       );
 
   Map<String, dynamic> toJson()=>{
     'like':like,
     'dis_like':disLike,
-    'content_name':contentName,
+    'content_id':contentId,
+    "content_uid":contentUid,
   };
 }

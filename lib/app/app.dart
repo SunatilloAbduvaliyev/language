@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/cubit/auth_cubit/auth_cubit.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
-import 'package:english/cubit/like_cubit/like_cubit.dart';
 import 'package:english/cubit/tab_box_cubit/tab_box_cubit.dart';
 import 'package:english/screen/route.dart';
 import 'package:english/utils/color/app_colors.dart';
@@ -22,7 +21,6 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => UserBloc()),
         BlocProvider(create: (_) => TabBoxCubit()),
         BlocProvider(create: (_) => GrammarCubit()),
-        BlocProvider(create: (_) => LikeCubit()),
       ],
       child: const MyApp(),
     );

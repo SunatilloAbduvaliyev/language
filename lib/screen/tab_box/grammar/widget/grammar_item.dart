@@ -1,14 +1,13 @@
+import 'package:english/bloc/user_bloc/user_event.dart';
+import 'package:english/bloc/user_bloc/user_state.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
-import 'package:english/cubit/like_cubit/like_cubit.dart';
 import 'package:english/data/model/forms_status.dart';
 import 'package:english/data/model/user/like_dislike/like_dislike_model.dart';
-import 'package:english/data/model/user/user_model.dart';
 import 'package:english/screen/widgets/like_button.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/user_bloc/user_bloc.dart';
-import '../../../../cubit/like_cubit/like_state.dart';
 import '../../../../data/model/grammar/grammar_model.dart';
 import '../../../../utils/style/app_text_style.dart';
 import '../../../widgets/shimmers/shimmer_circle.dart';
@@ -37,9 +36,10 @@ Widget grammarItem({
             style: AppTextStyle.semiBold,
           ),
         ),
-        BlocBuilder<LikeCubit, LikeState>(
-          builder: (BuildContext context, LikeState state) {
-            if (state.status == FormsStatus.loading || state.status == FormsStatus.pure) {
+        BlocBuilder<UserBloc, UserState>(
+          builder: (BuildContext context, UserState state) {
+            if (state.status == FormsStatus.pure ||
+                state.status == FormsStatus.loading) {
               return Row(
                 children: [
                   shimmerCircle(),
@@ -53,15 +53,18 @@ Widget grammarItem({
               children: [
                 likeButton(
                   onTap: () {
-                    if(state.likes[index].like){
-                      UserModel userData =
-                          context.read<UserBloc>().state.userData;
-                      LikeDislikeModel likesModel = state.likes[index];
-                      context.read<LikeCubit>().updateLike(
-                        userData: userData,
-                        likesModel: likesModel,
-                        index: index,
-                        isLike: false,
+                    if (state.userData.likes[index].like) {
+                      LikeDislikeModel likeModel = state.userData.likes[index]
+                          .copyWith(
+                        like: false,
+                      );
+                      context.read<UserBloc>().add(
+                        UpdateLikeUserEvent(
+                          userModel: state.userData,
+                          index: index,
+                          like: state.userData.likes,
+                          likeDislikeModel: likeModel,
+                        ),
                       );
                       if(grammarModel.likeCount != 0){
                         grammarModel = grammarModel.copyWith(
@@ -70,14 +73,17 @@ Widget grammarItem({
                       }
                       context.read<GrammarCubit>().updateGrammar(grammarModel: grammarModel);
                     }else{
-                      UserModel userData =
-                          context.read<UserBloc>().state.userData;
-                      LikeDislikeModel likesModel = state.likes[index];
-                      context.read<LikeCubit>().updateLike(
-                        userData: userData,
-                        likesModel: likesModel,
-                        index: index,
-                        isLike: true,
+                      LikeDislikeModel likeModel = state.userData.likes[index]
+                          .copyWith(
+                        like: true,
+                      );
+                      context.read<UserBloc>().add(
+                        UpdateLikeUserEvent(
+                          userModel: state.userData,
+                          index: index,
+                          like: state.userData.likes,
+                          likeDislikeModel: likeModel,
+                        ),
                       );
                       grammarModel = grammarModel.copyWith(
                         likeCount: grammarModel.likeCount + 1,
@@ -85,7 +91,8 @@ Widget grammarItem({
                       context.read<GrammarCubit>().updateGrammar(grammarModel: grammarModel);
                     }
                   },
-                  activeLike: state.likes[index].like,
+                  activeLike: state.userData.likes[index].like,
+                  loading: state.loadingIndex.contains(index),
                 ),
                 SizedBox(
                   width: 40, // Giving fixed width to avoid layout issues
@@ -100,7 +107,7 @@ Widget grammarItem({
                 likeButton(
                   onTap: () {},
                   isLike: false,
-                  activeDisLike: state.likes[index].disLike,
+                  activeDisLike: state.userData.likes[index].disLike,
                 ),
                 SizedBox(
                   width: 40, // Giving fixed width to avoid layout issues
