@@ -27,7 +27,7 @@ class UserRepository {
 
         // Yangilangan UserModel yaratish
         UserModel insertUser = userModel.copyWith(uid: user.uid);
-        debugPrint('_________________________________________insert usert copywith ${insertUser.toString()}');
+        debugPrint('_________________________________________insert usert copywith  uid ${insertUser.uid}');
         return NetworkResponse(
           data: insertUser,
         );

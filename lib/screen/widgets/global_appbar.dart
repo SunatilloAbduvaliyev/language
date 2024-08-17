@@ -1,22 +1,28 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/data/model/forms_status.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../bloc/user_bloc/user_bloc.dart';
 import '../../bloc/user_bloc/user_state.dart';
+import '../../utils/color/app_colors.dart';
 import '../../utils/style/app_text_style.dart';
 
 class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
   final bool navigatePop;
+  final Color? backgroundColor, color;
+
 
   const GlobalAppBar({
     super.key,
     required this.title,
     this.actions,
     this.navigatePop = false,
+    this.backgroundColor,
+    this.color,
   });
 
   @override
@@ -25,14 +31,23 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
       builder: (BuildContext context, UserState state) {
         if (state.status == FormsStatus.success ||
             state.status == FormsStatus.updateLoading) {
+          debugPrint("UserModel insert uid ______________________________ ${state.userData.uid}");
           return AppBar(
+            backgroundColor: backgroundColor ?? AppColors.cF3F3F3,
+            scrolledUnderElevation: 0,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.light,
+              statusBarColor: AppColors.c356899.withOpacity(0.6),
+            ),
             leading: navigatePop
                 ? IconButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(
-                      Icons.arrow_back,
+                    icon:  Icon(
+                      Icons.arrow_back_ios,
+                      color: color ?? AppColors.c000000,
                     ),
                   )
                 : IconButton(
@@ -60,6 +75,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
               title.tr(),
               style: AppTextStyle.bold.copyWith(
                 fontSize: 18,
+                color: color ?? AppColors.c000000
               ),
             ),
             actions: actions,

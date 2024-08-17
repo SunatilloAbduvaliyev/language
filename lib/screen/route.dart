@@ -1,5 +1,7 @@
+import 'package:english/data/model/grammar/grammar_model.dart';
 import 'package:english/screen/auth/login/login_screen.dart';
 import 'package:english/screen/auth/register/register_screen.dart';
+import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +17,9 @@ class AppRoute{
 
       case RouteName.tabBoxScreen:
         return navigate(const TabBoxScreen());
+
+      case RouteName.grammarDetail:
+        return navigate( GrammarDetailScreen(grammarModel: settings.arguments as GrammarModel));
 
 
       default:
@@ -37,5 +42,6 @@ class RouteName{
   static const String login = '/login';
   static const  String register = '/register';
   static const  String tabBoxScreen = '/tab_box';
+  static const  String grammarDetail = '/grammar_detail';
 
 }

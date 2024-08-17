@@ -41,7 +41,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(
         state.copyWith(
           status: FormsStatus.success,
-          userData: userModel,
+          userData: response.data,
           isGrammarSuccess: event.isGrammarSuccess,
         ),
       );
