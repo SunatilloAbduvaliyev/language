@@ -37,7 +37,6 @@ class UserRepository {
         );
       }
     } catch (error) {
-      throw Exception(error);
       return NetworkResponse(
         errorMessage: error.toString(),
       );

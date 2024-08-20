@@ -101,7 +101,7 @@ Widget grammarItem({
                             );
                         grammarModel = grammarModel.copyWith(
                           likeCount: grammarModel.likeCount + 1,
-                          badCount: grammarModel.badCount != 0 ? grammarModel.badCount -1:0,
+                          badCount: state.userData.likes[index].disLike?grammarModel.badCount != 0 ? grammarModel.badCount -1:0:grammarModel.badCount,
                         );
                         context
                             .read<GrammarCubit>()
@@ -122,7 +122,6 @@ Widget grammarItem({
                   ),
                   10.boxW(),
                   likeButton(
-
                     onTap: () {
                       if (state.userData.likes[index].disLike) {
                         LikeDislikeModel likeModel =
@@ -158,7 +157,7 @@ Widget grammarItem({
                             );
                         grammarModel = grammarModel.copyWith(
                           badCount: grammarModel.badCount + 1,
-                          likeCount: grammarModel.likeCount!= 0?grammarModel.likeCount - 1:0,
+                          likeCount: state.userData.likes[index].like?grammarModel.likeCount!= 0?grammarModel.likeCount - 1:0:grammarModel.likeCount,
                         );
                         context
                             .read<GrammarCubit>()

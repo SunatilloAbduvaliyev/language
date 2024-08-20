@@ -21,7 +21,7 @@ class GrammarDetailScreen extends StatefulWidget {
 
 class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   Color backgroundColor = AppColors.cF3F3F3, textColor = AppColors.c000000;
-
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +34,55 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HtmlWidget(
               widget.grammarModel.firstExplanation,
               textStyle: AppTextStyle.medium.copyWith(
                 color: textColor,
               ),
+            ),
+            Stepper(
+              connectorColor: MaterialStateProperty.all(Colors.red),
+              steps: [
+                ...List.generate(
+                  widget.grammarModel.exampleData.length,
+                  (int index) => Step(
+                    title: Text(
+                      widget.grammarModel.exampleData[index].example,
+                      style: AppTextStyle.bold.copyWith(
+                        color: textColor
+                      ),
+                    ),
+                    content: Text(
+                      widget.grammarModel.exampleData[index].exampleExplanation,
+                      style: AppTextStyle.medium.copyWith(
+                        color: textColor
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+              onStepTapped: (int index){
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              currentStep: _currentIndex,
+              onStepContinue: (){
+                if(_currentIndex != widget.grammarModel.exampleData.length-1){
+                  setState(() {
+                    _currentIndex++;
+                  });
+                }
+              },
+              onStepCancel: (){
+                if(_currentIndex != 0){
+                  setState(() {
+                    _currentIndex--;
+                  });
+                }
+              },
             ),
           ],
         ).paddingHorizontal(14.w),
