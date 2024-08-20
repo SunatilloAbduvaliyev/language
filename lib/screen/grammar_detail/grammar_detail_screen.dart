@@ -43,7 +43,35 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
               ),
             ),
             Stepper(
-              connectorColor: MaterialStateProperty.all(Colors.red),
+              connectorColor: MaterialStateProperty.all(textColor),
+              controlsBuilder: (BuildContext context, ControlsDetails details) {
+                return Row(
+                  children: <Widget>[
+                    GestureDetector(
+                      onTap: details.onStepContinue,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                          color: const Color(0xFF6A489F),
+                        child: Text(
+                          'Continue',
+                          style: AppTextStyle.bold.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: details.onStepCancel,
+                      child: Text(
+                        'Cancel',
+                        style: AppTextStyle.bold.copyWith(
+                          color: textColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
               steps: [
                 ...List.generate(
                   widget.grammarModel.exampleData.length,
