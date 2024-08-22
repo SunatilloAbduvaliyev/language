@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:english/screen/grammar_detail/widget/example_item.dart';
 import 'package:english/screen/grammar_detail/widget/eye_theme_dialog.dart';
 import 'package:english/screen/widgets/global_appbar.dart';
+import 'package:english/screen/widgets/shimmers/shimmer_item.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
@@ -24,6 +28,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    debugPrint("____________________________________ build run grammar detail");
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: GlobalAppBar(
@@ -42,78 +47,47 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                 color: textColor,
               ),
             ),
-            Stepper(
-              connectorColor: MaterialStateProperty.all(textColor),
-              controlsBuilder: (BuildContext context, ControlsDetails details) {
-                return Row(
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: details.onStepContinue,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
-                          color: const Color(0xFF6A489F),
-                        child: Text(
-                          'Continue',
-                          style: AppTextStyle.bold.copyWith(
-                            color: Colors.white,
-                          ),
+            if(widget.grammarModel.exampleData.isNotEmpty)
+            ExampleItem(
+                exampleModel: widget.grammarModel.exampleData,
+                textColor: textColor),
+            if(widget.grammarModel.imagesData.isNotEmpty)
+            SizedBox(
+              height: 700.h,
+              width: double.infinity,
+              child: CardSwiper(
+                cardBuilder: (BuildContext context, index, x, y) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(20.w),
+                    child: CachedNetworkImage(
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      imageUrl: widget.grammarModel.imagesData[index].imageUrl,
+                      placeholder: (context, url) => Center(
+                        child: shimmerItem(
+                          shimmerWidth: double.infinity,
+                          shimmerHeight: 600,
+                        ),
+                      ),
+                      errorWidget: (context, url, error) => Container(
+                        color: backgroundColor,
+                        child: Image.asset(
+                          AppImages.errorImage,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: details.onStepCancel,
-                      child: Text(
-                        'Cancel',
-                        style: AppTextStyle.bold.copyWith(
-                          color: textColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-              steps: [
-                ...List.generate(
-                  widget.grammarModel.exampleData.length,
-                  (int index) => Step(
-                    title: Text(
-                      widget.grammarModel.exampleData[index].example,
-                      style: AppTextStyle.bold.copyWith(
-                        color: textColor
-                      ),
-                    ),
-                    content: Text(
-                      widget.grammarModel.exampleData[index].exampleExplanation,
-                      style: AppTextStyle.medium.copyWith(
-                        color: textColor
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-              onStepTapped: (int index){
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              currentStep: _currentIndex,
-              onStepContinue: (){
-                if(_currentIndex != widget.grammarModel.exampleData.length-1){
-                  setState(() {
-                    _currentIndex++;
-                  });
-                }
-              },
-              onStepCancel: (){
-                if(_currentIndex != 0){
-                  setState(() {
-                    _currentIndex--;
-                  });
-                }
-              },
+                  );
+                },
+                cardsCount: widget.grammarModel.imagesData.length,
+                allowedSwipeDirection:
+                    const AllowedSwipeDirection.only(left: true, right: true),
+                numberOfCardsDisplayed: widget.grammarModel.imagesData.length,
+              ),
             ),
+            100.boxH()
           ],
-        ).paddingHorizontal(14.w),
+        ).paddingHorizontal(7.w),
       ),
         floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),

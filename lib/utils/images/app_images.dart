@@ -8,4 +8,6 @@ class AppImages{
   static const String like = 'assets/icons/like.svg';
   static const String dontLike = 'assets/icons/dont_like.svg';
   static const String eye = 'assets/icons/eye.svg';
+  //png
+  static const String errorImage = 'assets/images/error_image.png';
 }
