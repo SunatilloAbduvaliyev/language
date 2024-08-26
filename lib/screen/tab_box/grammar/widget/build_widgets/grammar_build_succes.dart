@@ -1,5 +1,6 @@
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../data/model/grammar/grammar_model.dart';
 import '../grammar_item.dart';
 
@@ -9,7 +10,11 @@ Widget grammarBuildSuccess(List<GrammarModel> grammarList) {
     child: ListView.builder(
       itemCount: grammarList.length,
       itemBuilder: (BuildContext context, int index) {
-        return grammarItem(grammarModel: grammarList[index], index: index);
+        return grammarItem(
+          grammarModel: grammarList[index],
+          index: index,
+          context: context,
+        );
       },
     ),
   );

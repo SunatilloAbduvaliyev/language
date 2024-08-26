@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../../../utils/constants/constants.dart';
 import '../../model/grammar/grammar_model.dart';
 import '../../model/network_response.dart';
@@ -15,7 +14,7 @@ class GrammarRepository {
       List<GrammarModel> grammarData = snapshot.docs
           .map((doc) => GrammarModel.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
-
+      grammarData.sort((a,b)=>a.themeId.compareTo(b.themeId));
       return NetworkResponse(
         data: grammarData,
       );

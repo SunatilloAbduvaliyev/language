@@ -27,7 +27,7 @@ class UserRepository {
 
         // Yangilangan UserModel yaratish
         UserModel insertUser = userModel.copyWith(uid: user.uid);
-        debugPrint('_________________________________________insert usert copywith ${insertUser.toString()}');
+        debugPrint('_________________________________________insert usert copywith  uid ${insertUser.uid}');
         return NetworkResponse(
           data: insertUser,
         );
@@ -88,35 +88,41 @@ class UserRepository {
   }
   Future<NetworkResponse> likeUpdate({required UserModel userModel}) async {
     try {
-      // UserModel JSON'ini chop etish
       debugPrint('Sending updated userModel to Firestore: ${userModel.toUpdateJson()}');
 
+      // Firestore-da foydalanuvchini yangilash
       await FirebaseFirestore.instance
           .collection(AppConstants.userTableName)
           .doc(userModel.uid)
           .update(userModel.toUpdateJson());
 
+      // Yangilangan foydalanuvchi ma'lumotlarini olish
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
           .collection(AppConstants.userTableName)
           .doc(userModel.uid)
           .get();
 
       if (documentSnapshot.exists) {
-        UserModel userModel =
-            UserModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+        // Ma'lumotni UserModel ga aylantirish
+        UserModel updatedUserModel =
+        UserModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+
+        // Ma'lumotni NetworkResponse orqali qaytarish
         return NetworkResponse(
-          data: userModel,
+          data: updatedUserModel,
         );
       } else {
+        // Agar hujjat topilmasa, xatolik xabari qaytariladi
         return NetworkResponse(
-          errorMessage:
-              "Like ma'lumotlarida xato. Iltimos yangi account oching.",
+          errorMessage: "Like ma'lumotlarida xato. Iltimos yangi account oching.",
         );
       }
     } catch (error) {
-      return NetworkResponse(errorMessage: error.toString());
+      // Agar xatolik yuz bersa, xatolik xabari qaytariladi
+      return NetworkResponse(errorMessage: 'Error updating like: ${error.toString()}');
     }
   }
+
 
   Future<NetworkResponse> loginLikeInsert({
     required String userUid,
@@ -127,20 +133,24 @@ class UserRepository {
           .collection(AppConstants.userTableName)
           .doc(userUid)
           .get();
+
       if (documentSnapshot.exists) {
         UserModel userModel =
             UserModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
         List<LikeDislikeModel> likes = userModel.likes;
-        for(int i = userModel.likes.length-1; i<=grammarData.length-1; i++){
+        for(int i = userModel.likes.length-1; i<grammarData.length-1; i++){
           LikeDislikeModel likeDislikeModel = LikeDislikeModel.initialValue();
           likeDislikeModel = likeDislikeModel.copyWith(
-            contentName: grammarData[i].subjectName,
+            contentId: grammarData[i].themeId,
+            contentUid: grammarData[i].docId
           );
           likes.add(likeDislikeModel);
         }
+        likes.sort((a,b)=>a.contentId.compareTo(b.contentId));
         userModel = userModel.copyWith(
           likes: likes,
         );
+        debugPrint("login like _____________________________ ${userModel.likes.length}");
         await FirebaseFirestore.instance
             .collection(AppConstants.userTableName)
             .doc(userUid)
@@ -149,6 +159,7 @@ class UserRepository {
           data: userModel,
         );
       } else {
+        debugPrint("____________________________________________ user ma'lumot kelmadi.");
         return NetworkResponse(
           errorMessage:
               "Like ma'lumotlarida xato. Iltimos yangi account oching.",

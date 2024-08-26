@@ -36,7 +36,7 @@ class _LoginButtonState extends State<LoginButton> {
           duration: const Duration(seconds: 1),
           curve: Curves.linear,
           width: widget.isLoading ? 70.h : 300.w,
-          height: 55.h,
+          height: 65.h,
           child: Center(
             child: widget.isLoading || widget.success
                 ? const CupertinoActivityIndicator(color: Colors.white)

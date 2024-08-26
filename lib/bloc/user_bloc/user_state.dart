@@ -8,6 +8,7 @@ class UserState {
   final UserModel userData;
   final List<UserModel> allUserData;
   final bool isGrammarSuccess;
+  final Set<int> loadingIndex;
 
   UserState({
     required this.errorMessage,
@@ -15,6 +16,7 @@ class UserState {
     required this.userData,
     required this.allUserData,
     required this.isGrammarSuccess,
+    required this.loadingIndex,
   });
 
   UserState copyWith({
@@ -23,6 +25,7 @@ class UserState {
     UserModel? userData,
     List<UserModel>? allUserData,
     bool? isGrammarSuccess,
+    Set<int>? loadingIndex,
   }) {
     return UserState(
       errorMessage: errorMessage ?? this.errorMessage,
@@ -30,6 +33,7 @@ class UserState {
       userData: userData ?? this.userData,
       allUserData: allUserData ?? this.allUserData,
       isGrammarSuccess: isGrammarSuccess ?? this.isGrammarSuccess,
+      loadingIndex:  loadingIndex ?? this.loadingIndex,
     );
   }
 
@@ -39,5 +43,6 @@ class UserState {
         userData: UserModel.initialValue(),
         allUserData: [],
         isGrammarSuccess: false,
+        loadingIndex: {}
       );
 }

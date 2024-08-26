@@ -89,19 +89,6 @@ class GrammarModel {
         themeId: 0,
       );
 
-  Map<String, dynamic> toJson() => {
-        'doc_id': docId,
-        "subject_name": subjectName,
-        "first_explanation": firstExplanation,
-        "example_data":
-            exampleData.map((exampleData) => exampleData.toJson()).toList(),
-        "conclusion": conclusion,
-        "like_count": likeCount,
-        'bad_count': badCount,
-        'comment_data': commentData,
-        'images_data': imagesData,
-        "theme_id": themeId,
-      };
 
   Map<String, dynamic> toUpdateJson() => {
         "subject_name": subjectName,
@@ -113,6 +100,6 @@ class GrammarModel {
         'bad_count': badCount,
         'comment_data':
             commentData.map((commentData) => commentData.toJson()).toList(),
-        'images_data': imagesData,
+        'images_data': imagesData.map((imagesData) => imagesData.toJson()).toList(),
       };
 }

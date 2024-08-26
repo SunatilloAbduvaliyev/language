@@ -22,7 +22,7 @@ class GrammarScreen extends StatelessWidget {
         builder: (context, state) {
           if (state.status == FormsStatus.loading) {
             return grammarBuildLoading();
-          } else if (state.status == FormsStatus.success) {
+          } else if (state.status == FormsStatus.success || state.status == FormsStatus.updateLoading) {
             return grammarBuildSuccess(state.grammarData);
           }
           return grammarBuildError(state.errorMessage);

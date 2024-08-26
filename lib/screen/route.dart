@@ -1,14 +1,14 @@
+import 'package:english/data/model/grammar/grammar_model.dart';
 import 'package:english/screen/auth/login/login_screen.dart';
 import 'package:english/screen/auth/register/register_screen.dart';
-import 'package:english/screen/grammar_add.dart';
+import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
+import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 class AppRoute{
   static Route generateRoute(RouteSettings settings){
     switch(settings.name){
-      case RouteName.grammarAdd:
-        return navigate(const GrammarAddScreen());
       case RouteName.login:
         return navigate(const LoginScreen());
 
@@ -18,18 +18,30 @@ class AppRoute{
       case RouteName.tabBoxScreen:
         return navigate(const TabBoxScreen());
 
+      case RouteName.grammarDetail:
+        return navigate( GrammarDetailScreen(grammarModel: settings.arguments as GrammarModel));
+
 
       default:
-        return navigate(const Scaffold());
+        return navigate(
+          Scaffold(
+            body: Center(
+              child: Text(
+                "Default",
+                style: AppTextStyle.bold,
+              ),
+            ),
+          ),
+        );
     }
   }
   static navigate(Widget widget)=>CupertinoPageRoute(builder: (context)=>widget);
 }
 
 class RouteName{
-  static const String grammarAdd = '/add';
   static const String login = '/login';
   static const  String register = '/register';
   static const  String tabBoxScreen = '/tab_box';
+  static const  String grammarDetail = '/grammar_detail';
 
 }
