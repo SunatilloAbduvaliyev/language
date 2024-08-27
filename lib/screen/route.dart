@@ -1,4 +1,5 @@
 import 'package:english/data/model/grammar/grammar_model.dart';
+import 'package:english/screen/add_word/add_word_screen.dart';
 import 'package:english/screen/auth/login/login_screen.dart';
 import 'package:english/screen/auth/register/register_screen.dart';
 import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
@@ -20,6 +21,9 @@ class AppRoute{
 
       case RouteName.grammarDetail:
         return navigate( GrammarDetailScreen(grammarModel: settings.arguments as GrammarModel));
+
+      case RouteName.addWord:
+        return navigate(const AddWordScreen());
 
 
       default:
@@ -43,5 +47,6 @@ class RouteName{
   static const  String register = '/register';
   static const  String tabBoxScreen = '/tab_box';
   static const  String grammarDetail = '/grammar_detail';
+  static const  String addWord = '/add_word';
 
 }

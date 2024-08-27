@@ -1,3 +1,4 @@
+import 'package:english/bloc/user_bloc/user_state.dart';
 import 'package:english/data/model/user/user_model.dart';
 import 'package:equatable/equatable.dart';
 
@@ -81,3 +82,10 @@ class LoginInsertLikeUserEvent extends UserEvent with EquatableMixin{
     grammarData,
   ];
 }
+
+class UserUpdateEvent extends UserEvent{
+  final UserModel userModel;
+  UserUpdateEvent({required this.userModel});
+}
+
+class UserInitialEvent extends UserEvent{}

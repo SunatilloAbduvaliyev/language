@@ -1,92 +1,76 @@
+import 'package:english/data/model/example/example_model.dart';
+
 class WordModel {
   final String english;
-  final String uzbek;
+  final String translateWord;
   final String russian;
   final String phonetics;
-  final String definitionUz;
-  final String definitionEn;
-  final String definitionRu;
-  final List<String> exampleEn;
-  final List<String> exampleRu;
+  final List<ExampleModel> exampleEn;
   final bool isLike;
+  final String uid;
 
   WordModel({
+    required this.uid,
     required this.english,
-    required this.uzbek,
+    required this.translateWord,
     required this.russian,
     required this.phonetics,
-    required this.definitionUz,
-    required this.definitionEn,
-    required this.definitionRu,
     required this.exampleEn,
-    required this.exampleRu,
     required this.isLike,
   });
 
   factory WordModel.fromJson(Map<String, dynamic> json) {
     return WordModel(
+      uid: json['uid'] as String? ?? '',
       english: json['english'] as String? ?? '',
-      uzbek: json['uzbek'] as String? ?? '',
+      translateWord: json['uzbek'] as String? ?? '',
       russian: json['russian'] as String? ?? '',
       phonetics: json['phonetics'] as String? ?? '',
-      definitionUz: json['definition_uz'] as String? ?? '',
-      definitionEn: json['definition_en'] as String? ?? '',
-      definitionRu: json['definition_ru'] as String? ?? '',
-      exampleEn: (json['example_en'] as List<dynamic>).cast<String>() ?? [],
-      exampleRu: (json['example_ru'] as List<dynamic>).cast<String>() ?? [],
+      exampleEn: (json['example_en'] as List?)
+              ?.map((e) => ExampleModel.fromJson(e))
+              .toList() ??
+          [],
       isLike: json['is_like'] as bool? ?? false,
     );
   }
 
   Map<String, dynamic> toJson() => {
+        'uid': uid,
         'english': english,
-        'uzbek': uzbek,
+        'uzbek': translateWord,
         'russian': russian,
         'phonetics': phonetics,
-        'definition_uz': definitionUz,
-        'definition_en': definitionEn,
-        'definition_ru': definitionRu,
-        'example_en': exampleEn,
-        'example_ru': exampleRu,
+        'example_en': exampleEn.map((e)=>e.toJson()),
         'is_like': isLike,
       };
 
   WordModel copyWith({
     String? english,
-    String? uzbek,
+    String? translateWord,
     String? russian,
     String? phonetics,
-    String? definitionUz,
-    String? definitionEn,
-    String? definitionRu,
-    List<String>? exampleEn,
-    List<String>? exampleRu,
+    List<ExampleModel>? exampleEn,
     bool? isLike,
+    String? uid,
   }) {
     return WordModel(
+      uid: uid ?? this.uid,
       english: english ?? this.english,
-      uzbek: uzbek ?? this.uzbek,
+      translateWord: translateWord ?? this.translateWord,
       russian: russian ?? this.russian,
       phonetics: phonetics ?? this.phonetics,
-      definitionUz: definitionUz ?? this.definitionUz,
-      definitionEn: definitionEn ?? this.definitionEn,
-      definitionRu: definitionRu ?? this.definitionRu,
       exampleEn: exampleEn ?? this.exampleEn,
-      exampleRu: exampleRu ?? this.exampleRu,
       isLike: isLike ?? this.isLike,
     );
   }
 
   static WordModel initialValue() => WordModel(
+        uid: '',
         english: '',
-        uzbek: '',
+        translateWord: '',
         russian: '',
         phonetics: '',
-        definitionUz: '',
-        definitionEn: '',
-        definitionRu: '',
         exampleEn: [],
-        exampleRu: [],
         isLike: false,
       );
 }

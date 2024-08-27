@@ -1,6 +1,5 @@
-import 'package:english/data/model/grammar/example/example_model.dart';
 import 'package:flutter/material.dart';
-
+import '../../../data/model/example/example_model.dart';
 import '../../../utils/style/app_text_style.dart';
 
 class ExampleItem extends StatefulWidget {

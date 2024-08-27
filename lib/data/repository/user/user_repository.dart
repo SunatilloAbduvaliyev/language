@@ -169,5 +169,19 @@ class UserRepository {
       return NetworkResponse(errorMessage: error.toString());
     }
   }
+
+  Future<NetworkResponse> userUpdate({required UserModel userModel}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection(AppConstants.userTableName)
+          .doc(userModel.uid)
+          .update(userModel.toUpdateJson());
+      return NetworkResponse(data: userModel);
+    } catch (error) {
+      return NetworkResponse(
+        errorMessage: error.toString(),
+      );
+    }
+  }
 }
 

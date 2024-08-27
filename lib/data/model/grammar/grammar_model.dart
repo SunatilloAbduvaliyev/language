@@ -1,6 +1,6 @@
 import 'package:english/data/model/grammar/comment/comment_model.dart';
-import 'package:english/data/model/grammar/example/example_model.dart';
 import 'package:english/data/model/grammar/images/images_model.dart';
+import '../example/example_model.dart';
 
 class GrammarModel {
   final String docId;

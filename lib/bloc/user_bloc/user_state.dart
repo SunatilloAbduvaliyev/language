@@ -1,4 +1,5 @@
 import 'package:english/data/model/forms_status.dart';
+import 'package:english/data/model/word/word_model.dart';
 
 import '../../data/model/user/user_model.dart';
 
@@ -9,8 +10,10 @@ class UserState {
   final List<UserModel> allUserData;
   final bool isGrammarSuccess;
   final Set<int> loadingIndex;
+  final List<WordModel> favouriteWord;
 
   UserState({
+    required this.favouriteWord,
     required this.errorMessage,
     required this.status,
     required this.userData,
@@ -26,8 +29,10 @@ class UserState {
     List<UserModel>? allUserData,
     bool? isGrammarSuccess,
     Set<int>? loadingIndex,
+    List<WordModel>? favouriteWord,
   }) {
     return UserState(
+      favouriteWord: favouriteWord ?? this.favouriteWord,
       errorMessage: errorMessage ?? this.errorMessage,
       status: status ?? this.status,
       userData: userData ?? this.userData,
@@ -38,6 +43,7 @@ class UserState {
   }
 
   static UserState initialValue() => UserState(
+        favouriteWord: [],
         errorMessage: '',
         status: FormsStatus.pure,
         userData: UserModel.initialValue(),

@@ -16,6 +16,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<FetchUserEvent>(_fetUser);
     on<UpdateLikeUserEvent>(_likeUpdate);
     on<LoginInsertLikeUserEvent>(_loginLikeInsert);
+    on<UserUpdateEvent>(_updateUser);
+    on<UserInitialEvent>(_initialState);
   }
 
   Future<void> _insertUser(
@@ -163,4 +165,32 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       );
     }
   }
+
+  Future<void> _updateUser(
+      UserUpdateEvent event, Emitter<UserState> emit) async {
+    emit(state.copyWith(status: FormsStatus.loading));
+    NetworkResponse response =
+        await getIt<UserRepository>().userUpdate(userModel: event.userModel);
+    if (response.errorMessage.isEmpty) {
+      emit(
+        state.copyWith(
+          status: FormsStatus.success,
+          userData: response.data,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          status: FormsStatus.error,
+          errorMessage: response.errorMessage,
+        ),
+      );
+    }
+  }
+
+  void _initialState(UserInitialEvent event, Emitter<UserState> emit) => emit(
+        state.copyWith(
+          status: FormsStatus.success,
+        ),
+      );
 }

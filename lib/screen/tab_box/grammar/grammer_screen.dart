@@ -19,10 +19,11 @@ class GrammarScreen extends StatelessWidget {
       drawer: const GlobalDrawer(),
       appBar: GlobalAppBar(title: 'learn_grammar'.tr(),),
       body: BlocBuilder<GrammarCubit, GrammarState>(
-        builder: (context, state) {
+        builder: (BuildContext context, GrammarState state) {
           if (state.status == FormsStatus.loading) {
             return grammarBuildLoading();
-          } else if (state.status == FormsStatus.success || state.status == FormsStatus.updateLoading) {
+          } else if (state.status == FormsStatus.success ||
+              state.status == FormsStatus.updateLoading) {
             return grammarBuildSuccess(state.grammarData);
           }
           return grammarBuildError(state.errorMessage);

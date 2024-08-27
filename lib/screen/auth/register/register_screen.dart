@@ -17,7 +17,7 @@ import '../../../utils/style/app_text_style.dart';
 import '../../../utils/ui_utils/ui_utils.dart';
 import '../../route.dart';
 import '../../widgets/change_language_button.dart';
-import '../../widgets/global_button.dart';
+import '../../widgets/login_button.dart';
 import '../widget/input_text.dart';
 import '../widget/row_item_button.dart';
 

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/model/forms_status.dart';
 import '../../data/model/network_response.dart';
 import '../../data/repository/auth/auth_repository.dart';

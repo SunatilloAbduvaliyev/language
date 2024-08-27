@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
-import 'package:english/screen/tab_box/add_word/add_word_screen.dart';
 import 'package:english/screen/tab_box/chat_bot/chat_bot_screen.dart';
+import 'package:english/screen/tab_box/game/add_word_screen.dart';
 import 'package:english/screen/tab_box/grammar/grammer_screen.dart';
 import 'package:english/screen/tab_box/quiz/quiz_screen.dart';
 import 'package:english/screen/tab_box/words/words_screen.dart';
@@ -29,7 +29,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
   List<Widget> screens = [
     const GrammarScreen(),
     const WordsScreen(),
-    const AddWordScreen(),
+    const GameScreen(),
     const QuizScreen(),
     const ChatBotScreen(),
   ];
