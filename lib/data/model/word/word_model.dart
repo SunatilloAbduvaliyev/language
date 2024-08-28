@@ -1,4 +1,4 @@
-import 'package:english/data/model/example/example_model.dart';
+import '../example/example_model.dart';
 
 class WordModel {
   final String english;
@@ -8,6 +8,7 @@ class WordModel {
   final List<ExampleModel> exampleEn;
   final bool isLike;
   final String uid;
+  final String wordConcept;
 
   WordModel({
     required this.uid,
@@ -17,6 +18,7 @@ class WordModel {
     required this.phonetics,
     required this.exampleEn,
     required this.isLike,
+    required this.wordConcept,
   });
 
   factory WordModel.fromJson(Map<String, dynamic> json) {
@@ -27,22 +29,33 @@ class WordModel {
       russian: json['russian'] as String? ?? '',
       phonetics: json['phonetics'] as String? ?? '',
       exampleEn: (json['example_en'] as List?)
-              ?.map((e) => ExampleModel.fromJson(e))
-              .toList() ??
+          ?.map((e) => ExampleModel.fromJson(e))
+          .toList() ??
           [],
       isLike: json['is_like'] as bool? ?? false,
+      wordConcept:  json['word_concept'] as String? ?? '',
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'uid': uid,
-        'english': english,
-        'uzbek': translateWord,
-        'russian': russian,
-        'phonetics': phonetics,
-        'example_en': exampleEn.map((e)=>e.toJson()),
-        'is_like': isLike,
-      };
+    'uid': uid,
+    'english': english,
+    'uzbek': translateWord,
+    'russian': russian,
+    'phonetics': phonetics,
+    'example_en': exampleEn.map((e)=>e.toJson()),
+    'is_like': isLike,
+    'word_concept':wordConcept,
+  };
+  Map<String, dynamic> toUpdateJson() => {
+    'english': english,
+    'uzbek': translateWord,
+    'russian': russian,
+    'phonetics': phonetics,
+    'example_en': exampleEn.map((e)=>e.toJson()),
+    'is_like': isLike,
+    'word_concept':wordConcept,
+  };
 
   WordModel copyWith({
     String? english,
@@ -52,6 +65,7 @@ class WordModel {
     List<ExampleModel>? exampleEn,
     bool? isLike,
     String? uid,
+    String? wordConcept,
   }) {
     return WordModel(
       uid: uid ?? this.uid,
@@ -61,16 +75,18 @@ class WordModel {
       phonetics: phonetics ?? this.phonetics,
       exampleEn: exampleEn ?? this.exampleEn,
       isLike: isLike ?? this.isLike,
+      wordConcept: wordConcept ?? this.wordConcept,
     );
   }
 
   static WordModel initialValue() => WordModel(
-        uid: '',
-        english: '',
-        translateWord: '',
-        russian: '',
-        phonetics: '',
-        exampleEn: [],
-        isLike: false,
-      );
+    uid: '',
+    english: '',
+    translateWord: '',
+    russian: '',
+    phonetics: '',
+    exampleEn: [],
+    isLike: false,
+    wordConcept: '',
+  );
 }
