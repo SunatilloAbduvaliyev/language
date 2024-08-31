@@ -10,4 +10,6 @@ class AppImages{
   static const String eye = 'assets/icons/eye.svg';
   //png
   static const String errorImage = 'assets/images/error_image.png';
+  //lottie
+  static const String empty = 'assets/lottie/empty.json';
 }

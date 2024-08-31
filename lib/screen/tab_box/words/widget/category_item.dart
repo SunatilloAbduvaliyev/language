@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:english/app/app.dart';
+import 'package:english/cubit/word_category_cubit/word_category_cubit.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryItem extends StatefulWidget {
   const CategoryItem({super.key});
@@ -47,6 +50,7 @@ class _CategoryItemState extends State<CategoryItem> {
               setState(() {});
             }
           });
+          context.read<WordCategoryCubit>().changeWord(index);
         },
       ),
     );

@@ -6,6 +6,7 @@ class UserModel {
   final String firstName;
   final String lastName;
   final List<WordModel> words;
+  final List<WordModel> favouriteWords;
   final String fcmToken;
   final List<LikeDislikeModel> likes;
   final String email;
@@ -20,6 +21,7 @@ class UserModel {
     required this.likes,
     required this.email,
     required this.password,
+    required this.favouriteWords,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -31,6 +33,10 @@ class UserModel {
         ?.map((element) => WordModel.fromJson(element))
         .toList() ??
         [],
+      favouriteWords: (json['favourite_words'] as List?)
+          ?.map((element) => WordModel.fromJson(element))
+          .toList() ??
+          [],
     fcmToken: json['fcm_token'] as String? ?? '',
     likes: (json['likes'] as List?)?.map((e)=>LikeDislikeModel.fromJson(e)).toList() ?? [],
       email: json['email'] as String? ?? '',
@@ -44,6 +50,7 @@ class UserModel {
         'first_name': firstName,
         'last_name': lastName,
         'words': words.map((element) => element.toJson()).toList(),
+        'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
@@ -54,6 +61,7 @@ class UserModel {
         'first_name': firstName,
         'last_name': lastName,
         'words': words.map((element) => element.toJson()).toList(),
+        'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
@@ -65,6 +73,7 @@ class UserModel {
     String? firstName,
     String? lastName,
     List<WordModel>? words,
+    List<WordModel>? favouriteWords,
     String? fcmToken,
     List<LikeDislikeModel>? likes,
     String? email,
@@ -79,6 +88,7 @@ class UserModel {
       likes: likes ?? this.likes,
       email: email ?? this.email,
       password: password ?? this.password,
+      favouriteWords: favouriteWords ?? this.favouriteWords,
     );
   }
 
@@ -92,5 +102,6 @@ class UserModel {
         likes: [],
         email: '',
         password: '',
+        favouriteWords: [],
       );
 }
