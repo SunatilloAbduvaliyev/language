@@ -42,9 +42,14 @@ class WordsScreen extends StatelessWidget {
                     Navigator.pushNamed(context, RouteName.addWord);
                   },
                 ),
-                const PopupMenuItem<String>(
-                  value: 'Option 2',
-                  child: Text('Option 2'),
+                PopupMenuItem<String>(
+                  child: Text(
+                    'learning_word'.tr(),
+                    style: AppTextStyle.medium,
+                  ),
+                  onTap: (){
+                    Navigator.pushNamed(context, RouteName.learningWord);
+                  },
                 ),
               ];
             },
