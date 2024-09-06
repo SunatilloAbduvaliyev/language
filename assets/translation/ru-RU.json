@@ -32,5 +32,20 @@
   "invalid_verification_id": "Полученный проверочный ID недействителен.",
   "first_name": "Имя",
   "last_name": "Фамилия",
-  "do_you_have_an_account?   ": "У тебя есть аккаунт?   "
+  "do_you_have_an_account?   ": "У тебя есть аккаунт?   ",
+  "all": "Все",
+  "me": "Мой",
+  "favourite": "Избранное",
+  "add_word": "Добавить слово",
+  "en_word": "Английское слово",
+  "phonetics": "Фонетика",
+  "translate_word": "Перевести слово",
+  "example": "Примеры",
+  "en_word_title": "Введите английское слово",
+  "phonetics_title": "Введите фонетику",
+  "translate_word_title": "Введите перевод",
+  "example_one_title": "Введите пример на английском",
+  "example_two_title": "Введите перевод примера на узбекский",
+  "local_add_example": "Добавить пример",
+  "add_word_title": "Добавить слово"
 }

@@ -32,5 +32,20 @@
   "invalid_verification_id": "The credential verification ID received is invalid.",
   "first_name": "First Name",
   "last_name": "Last Name",
-  "do_you_have_an_account?   ": "Do you have an account?   "
+  "do_you_have_an_account?   ": "Do you have an account?   ",
+  "all": "All",
+  "me": "My list",
+  "favourite": "Favourites",
+  "add_word": "Add word",
+  "en_word": "English word",
+  "phonetics": "Phonetic",
+  "translate_word": "Translate word",
+  "example": "Examples",
+  "en_word_title": "Enter English word",
+  "phonetics_title": "Enter phonetic",
+  "translate_word_title": "Enter translation",
+  "example_one_title": "Enter English example",
+  "example_two_title": "Enter Uzbek meaning of the example",
+  "local_add_example": "Add Example",
+  "add_word_title": "Add Word"
 }

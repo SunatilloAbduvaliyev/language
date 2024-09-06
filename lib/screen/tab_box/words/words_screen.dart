@@ -1,9 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_bloc.dart';
+import 'package:english/cubit/change_item_cubit/change_item_cubit.dart';
 import 'package:english/cubit/word_category_cubit/word_category_cubit.dart';
+import 'package:english/data/model/forms_status.dart';
 import 'package:english/screen/route.dart';
+import 'package:english/screen/tab_box/words/widget/LoadingWordTable.dart';
 import 'package:english/screen/tab_box/words/widget/empty_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_category_item.dart';
+import 'package:english/screen/tab_box/words/widget/word_list_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_table.dart';
 import 'package:english/screen/widgets/global_drawer.dart';
 import 'package:english/utils/extension/extension.dart';
@@ -22,12 +26,12 @@ class WordsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const GlobalDrawer(),
+      drawer: globalDrawer(context),
       appBar: GlobalAppBar(
         title: "add_word".tr(),
         actions: <Widget>[
           PopupMenuButton(
-            itemBuilder: (BuildContext context) {
+            itemBuilder: (BuildContext ctx) {
               return <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
                   child: Text(
@@ -55,35 +59,56 @@ class WordsScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: BlocBuilder<WordCategoryCubit, int>(
-                builder: (BuildContext context, int state) {
+                builder: (BuildContext ctx, int state) {
               if (state == 0) {
                 return BlocBuilder<WordCubit, WordState>(
-                  builder: (BuildContext context, WordState state) {
+                  builder: (BuildContext ctx, WordState state) {
                     if(state.listWord.isEmpty){
                       return emptyItem();
                     }
-                    return WordTable(words: state.listWord)
-                        .paddingHorizontal(14.w);
+                    if (state.status == FormsStatus.loading) {
+                      return const LoadingWordTable().paddingHorizontal(14);
+                    }
+                    return context.watch<ChangeItemCubit>().state == 0
+                        ? WordTable(words: state.listWord)
+                            .paddingHorizontal(14.w)
+                        : WordListItem(
+                            listWords: state.listWord,
+                          ).paddingHorizontal(14);
                   },
                 );
               } else if (state == 1) {
                 return BlocBuilder<UserBloc, UserState>(
-                  builder: (BuildContext context, UserState state) {
+                  builder: (BuildContext ctx, UserState state) {
                     if(state.userData.words.isEmpty){
                       return emptyItem();
                     }
-                    return WordTable(words: state.userData.words)
-                        .paddingHorizontal(14.w);
+                    if (state.status == FormsStatus.loading) {
+                      return const LoadingWordTable().paddingHorizontal(14);
+                    }
+                    return context.watch<ChangeItemCubit>().state == 0
+                        ? WordTable(words: state.userData.words)
+                            .paddingHorizontal(14.w)
+                        : WordListItem(
+                            listWords: state.userData.words,
+                          ).paddingHorizontal(14);
                   },
                 );
               }
               return BlocBuilder<UserBloc, UserState>(
-                builder: (BuildContext context, UserState state) {
+                builder: (BuildContext ctx, UserState state) {
                   if(state.userData.favouriteWords.isEmpty){
                     return emptyItem();
                   }
-                  return WordTable(words: state.userData.favouriteWords)
-                      .paddingHorizontal(14.w);
+                  if (state.status == FormsStatus.loading) {
+                    return const LoadingWordTable().paddingHorizontal(14);
+                  }
+                  return context.watch<ChangeItemCubit>().state == 0
+                      ? WordTable(words: state.userData.favouriteWords)
+                          .paddingHorizontal(14.w)
+                      : WordListItem(
+                          listWords: state.userData.favouriteWords,
+                        ).paddingHorizontal(14);
                 },
               );
             }),

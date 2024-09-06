@@ -32,5 +32,20 @@
   "invalid_verification_id": "Olingan credential tasdiqlash IDsi noto'g'ri.",
   "first_name": "Ism",
   "last_name": "Familiya",
-  "do_you_have_an_account?   ": "Sizda hisob qaydnomsi bormi?   "
+  "do_you_have_an_account?   ": "Sizda hisob qaydnomsi bormi?   ",
+  "all": "Barchasi",
+  "me": "O'zimniki",
+  "favourite": "Sevimlilar",
+  "add_word": "Lu'gat qo'shing",
+  "en_word": "Englishcha so'z",
+  "phonetics": "Phonetic",
+  "translate_word": "So'z tarjimasi",
+  "example": "Misollar",
+  "en_word_title": "Englishcha so'zni kiriting",
+  "phonetics_title": "Phonetic (o'qilish)ni yozing",
+  "translate_word_title": "So'zni tarjimasini kiriting",
+  "example_one_title": "Englishcha misolni kiriting",
+  "example_two_title": "Uzbekcha misolning ma'nosini kiriting",
+  "local_add_example": "Misolni Qo'shing",
+  "add_word_title": "So'zni Qo'shing"
 }

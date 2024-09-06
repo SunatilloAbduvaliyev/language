@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/services/firebase_options.dart';
 import 'package:english/services/services_locator.dart';
+import 'package:english/services/text_to_speech_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ Future<void> main() async {
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setUpDI();
   await LocalStorage.prefInstance();
+  TextToSpeechService textToSpeechService = TextToSpeechService();
   runApp(
     EasyLocalization(
       supportedLocales: const [

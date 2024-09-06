@@ -16,7 +16,7 @@ class GrammarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const GlobalDrawer(),
+      drawer: globalDrawer(context),
       appBar: GlobalAppBar(title: 'learn_grammar'.tr(),),
       body: BlocBuilder<GrammarCubit, GrammarState>(
         builder: (BuildContext context, GrammarState state) {
