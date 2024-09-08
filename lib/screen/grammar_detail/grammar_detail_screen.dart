@@ -25,7 +25,6 @@ class GrammarDetailScreen extends StatefulWidget {
 
 class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
   Color backgroundColor = AppColors.cF3F3F3, textColor = AppColors.c000000;
-  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     debugPrint("____________________________________ build run grammar detail");

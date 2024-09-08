@@ -1,4 +1,3 @@
-import 'package:english/bloc/user_bloc/user_state.dart';
 import 'package:english/data/model/user/user_model.dart';
 import 'package:equatable/equatable.dart';
 

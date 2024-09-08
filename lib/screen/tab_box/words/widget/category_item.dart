@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:english/app/app.dart';
 import 'package:english/cubit/word_category_cubit/word_category_cubit.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/style/app_text_style.dart';

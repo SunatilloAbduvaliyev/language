@@ -12,4 +12,5 @@ class AppImages{
   static const String errorImage = 'assets/images/error_image.png';
   //lottie
   static const String empty = 'assets/lottie/empty.json';
+  static const String audio = 'assets/lottie/audio.json';
 }

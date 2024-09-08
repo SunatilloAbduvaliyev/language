@@ -2,7 +2,6 @@ import 'package:english/data/model/word/word_model.dart';
 import 'package:english/screen/route.dart';
 import 'package:english/screen/widgets/to_speak_button.dart';
 import 'package:english/services/text_to_speech_service.dart';
-import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/material.dart';
 
