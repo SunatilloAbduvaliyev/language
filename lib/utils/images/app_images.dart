@@ -8,9 +8,9 @@ class AppImages{
   static const String like = 'assets/icons/like.svg';
   static const String dontLike = 'assets/icons/dont_like.svg';
   static const String eye = 'assets/icons/eye.svg';
+  static const String audio = 'assets/icons/audio.svg';
   //png
   static const String errorImage = 'assets/images/error_image.png';
   //lottie
   static const String empty = 'assets/lottie/empty.json';
-  static const String audio = 'assets/lottie/audio.json';
 }

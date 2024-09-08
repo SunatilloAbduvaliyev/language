@@ -13,7 +13,7 @@ class LearningWordScreen extends StatelessWidget {
         title: "learing_word_screen",
         navigatePop: true,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: HtmlWidget("""
 <h2>Yangi innovatsion lug'at haqida</h2>
 <p>Siz hozir qo'lingizda dunyodagi yagona innovatsion kitobni ushlab turibsiz. Ushbu kitob o'ziga xos xususiyatga ega, u lug'atdan foydalanish bilan bog'liq har qanday muammoni hal qilishga qodir. Ingliz tilini o'rganayotgan odam vaqtining 90 foizini so'zlarni siqishga sarflaydi. Statistik ma'lumotlarga ko'ra, til o'rganayotgan odam yiliga 1200-1500 so'zni o'rganadi. Demak, 3-4 yil ichida u 5000-6000 ta so'zni o'rganadi va Ilg'or darajaga etadi. Aynan mana shu 90% muammo bu lug'at orqali hal qilindi, endi sizda atigi 1 oy ichida 5000 ta so'zni o'rganish imkoniyati mavjud.

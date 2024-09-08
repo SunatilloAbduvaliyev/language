@@ -11,6 +11,7 @@ class UserModel {
   final List<LikeDislikeModel> likes;
   final String email;
   final String password;
+  final Map<String, String> checkLike;
 
   UserModel({
     required this.uid,
@@ -22,6 +23,7 @@ class UserModel {
     required this.email,
     required this.password,
     required this.favouriteWords,
+    required this.checkLike,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +43,7 @@ class UserModel {
     likes: (json['likes'] as List?)?.map((e)=>LikeDislikeModel.fromJson(e)).toList() ?? [],
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
+      checkLike: json['check_like'] as Map<String, String>? ?? {}
     );
   }
 
@@ -55,6 +58,7 @@ class UserModel {
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
         'password':password,
+        'check_like':checkLike,
       };
   Map<String, dynamic> toUpdateJson() =>
       {
@@ -66,6 +70,7 @@ class UserModel {
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
         'password':password,
+        'check_like':checkLike,
       };
 
   UserModel copyWith({
@@ -78,6 +83,7 @@ class UserModel {
     List<LikeDislikeModel>? likes,
     String? email,
     String? password,
+    Map<String, String>? checkLike,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
@@ -89,6 +95,7 @@ class UserModel {
       email: email ?? this.email,
       password: password ?? this.password,
       favouriteWords: favouriteWords ?? this.favouriteWords,
+      checkLike: checkLike ?? this.checkLike,
     );
   }
 
@@ -103,5 +110,6 @@ class UserModel {
         email: '',
         password: '',
         favouriteWords: [],
+        checkLike: {"learning_english_word":'kkkkk'},
       );
 }

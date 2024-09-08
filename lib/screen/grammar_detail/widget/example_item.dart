@@ -21,7 +21,7 @@ class _ExampleItemState extends State<ExampleItem> {
   @override
   Widget build(BuildContext context) {
     return Stepper(
-      connectorColor: MaterialStateProperty.all(widget.textColor),
+      connectorColor: WidgetStateProperty.all(widget.textColor),
       // controlsBuilder: (BuildContext context, ControlsDetails details) {
       //   return const SizedBox
       //       .shrink(); // Bu yerda default tugmalarni o'chirib qo'yamiz

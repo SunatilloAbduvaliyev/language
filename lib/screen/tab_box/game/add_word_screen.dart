@@ -11,7 +11,7 @@ class GameScreen extends StatelessWidget {
       appBar: GlobalAppBar(
         title: "add_word".tr(),
       ),
-      body: CustomScrollView(
+      body: const CustomScrollView(
         slivers: [],
       ),
     );

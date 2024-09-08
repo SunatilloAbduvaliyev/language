@@ -758,7 +758,7 @@ packages:
     source: hosted
     version: "0.27.7"
   shared_preferences:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences
       sha256: c3f888ba2d659f3e75f4686112cc1e71f46177f74452d40d8307edc332296ead

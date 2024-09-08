@@ -1,4 +1,5 @@
 import 'package:english/data/model/user/user_model.dart';
+import 'package:english/data/model/word/word_model.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../data/model/grammar/grammar_model.dart';
@@ -65,7 +66,7 @@ class UpdateLikeUserEvent extends UserEvent with EquatableMixin {
       ];
 }
 
-class LoginInsertLikeUserEvent extends UserEvent with EquatableMixin{
+class LoginInsertLikeUserEvent extends UserEvent with EquatableMixin {
   final String userUid;
   final List<GrammarModel> grammarData;
 
@@ -74,17 +75,36 @@ class LoginInsertLikeUserEvent extends UserEvent with EquatableMixin{
     required this.grammarData,
   });
 
-
   @override
   List<Object?> get props => [
-    userUid,
-    grammarData,
-  ];
+        userUid,
+        grammarData,
+      ];
 }
 
-class UserUpdateEvent extends UserEvent{
+class UserUpdateEvent extends UserEvent {
   final UserModel userModel;
+
   UserUpdateEvent({required this.userModel});
 }
 
-class UserInitialEvent extends UserEvent{}
+class UserInitialEvent extends UserEvent {}
+
+class UserLikeWordUpdateEvent extends UserEvent  with EquatableMixin{
+  final bool isTrue;
+  final WordModel wordModel;
+  final UserModel userModel;
+
+  UserLikeWordUpdateEvent({
+    this.isTrue = false,
+    required this.wordModel,
+    required this.userModel,
+  });
+
+  @override
+  List<Object?> get props => [
+    isTrue,
+    wordModel,
+    userModel,
+  ];
+}
