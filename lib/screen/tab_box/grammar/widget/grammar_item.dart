@@ -60,6 +60,9 @@ Widget grammarItem({
                   ],
                 );
               }
+              if(state.status == FormsStatus.error){
+                return Text(state.errorMessage);
+              }
               return Row(
                 children: [
                   likeButton(

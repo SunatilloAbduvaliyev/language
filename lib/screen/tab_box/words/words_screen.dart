@@ -6,6 +6,7 @@ import 'package:english/data/model/forms_status.dart';
 import 'package:english/screen/route.dart';
 import 'package:english/screen/tab_box/words/widget/LoadingWordTable.dart';
 import 'package:english/screen/tab_box/words/widget/empty_item.dart';
+import 'package:english/screen/tab_box/words/widget/search_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_category_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_list_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_table.dart';
@@ -38,7 +39,7 @@ class WordsScreen extends StatelessWidget {
                     'add_word'.tr(),
                     style: AppTextStyle.medium,
                   ),
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, RouteName.addWord);
                   },
                 ),
@@ -47,7 +48,7 @@ class WordsScreen extends StatelessWidget {
                     'learning_word'.tr(),
                     style: AppTextStyle.medium,
                   ),
-                  onTap: (){
+                  onTap: () {
                     Navigator.pushNamed(context, RouteName.learningWord);
                   },
                 ),
@@ -58,6 +59,32 @@ class WordsScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
+          SliverToBoxAdapter(
+            child: BlocBuilder<WordCategoryCubit, int>(
+              builder: (BuildContext context, int state) {
+                if(state == 0){
+                  return SearchItem(
+                    listWords: context.watch<WordCubit>().state.listWord,
+                    title: 'search_all'.tr(),
+                  ).paddingHorizontal(14);
+                }
+                 if(state == 1){
+                  return SearchItem(
+                    listWords: context.watch<UserBloc>().state.userData.words,
+                    title: 'search_me'.tr(),
+                  ).paddingHorizontal(14);
+                }
+                  return SearchItem(
+                    listWords: context.watch<UserBloc>().state.favouriteWord,
+                    title: 'search_favourite'.tr(),
+                  ).paddingHorizontal(14);
+
+              },
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: 10.boxH(),
+          ),
           SliverPersistentHeader(
             delegate: WordCategoryItems(),
             pinned: true,
@@ -68,7 +95,7 @@ class WordsScreen extends StatelessWidget {
               if (state == 0) {
                 return BlocBuilder<WordCubit, WordState>(
                   builder: (BuildContext ctx, WordState state) {
-                    if(state.listWord.isEmpty){
+                    if (state.listWord.isEmpty) {
                       return emptyItem();
                     }
                     if (state.status == FormsStatus.loading) {
@@ -85,7 +112,7 @@ class WordsScreen extends StatelessWidget {
               } else if (state == 1) {
                 return BlocBuilder<UserBloc, UserState>(
                   builder: (BuildContext ctx, UserState state) {
-                    if(state.userData.words.isEmpty){
+                    if (state.userData.words.isEmpty) {
                       return emptyItem();
                     }
                     if (state.status == FormsStatus.loading) {
@@ -102,7 +129,7 @@ class WordsScreen extends StatelessWidget {
               }
               return BlocBuilder<UserBloc, UserState>(
                 builder: (BuildContext ctx, UserState state) {
-                  if(state.userData.favouriteWords.isEmpty){
+                  if (state.userData.favouriteWords.isEmpty) {
                     return emptyItem();
                   }
                   if (state.status == FormsStatus.loading) {

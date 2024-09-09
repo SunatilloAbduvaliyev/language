@@ -43,7 +43,8 @@ class UserModel {
     likes: (json['likes'] as List?)?.map((e)=>LikeDislikeModel.fromJson(e)).toList() ?? [],
       email: json['email'] as String? ?? '',
       password: json['password'] as String? ?? '',
-      checkLike: json['check_like'] as Map<String, String>? ?? {}
+      checkLike: (json['check_like'] as Map<String, dynamic>?)?.map(
+              (key, value) => MapEntry(key, value as String)) ?? {},
     );
   }
 

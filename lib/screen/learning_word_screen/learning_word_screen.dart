@@ -366,7 +366,7 @@ Shahar usuli.
 Siz eng yaxshi biladigan shaharni tanlaysiz. Siz bu shaharni butunlay ozod qilasiz, ya'ni u yerdan odamlarni olib tashlaysiz, albatta sizning tasavvuringizda! Shundan so'ng, barcha yaratilgan uyushmalaringizni shahar atrofida joylashtiring. Misol uchun, oshxonada kit ustida suzuvchi mushukni qo'yasiz. Avval o'z uyingizdan boshlang va keyin uni boshqa joylarga joylashtiring. Bu nima uchun kerak? Ushbu texnikadan foydalanib, siz yaratgan uyushmalar
 <br><br>
 havoda uchmang, ular kosmosda o'ziga xos o'ringa ega, hatto ularning joylashishini ham aytishingiz mumkin.
-<h3>Keling, 100 ta so'zni birgalikda o'rganamiz</h3>
+<h3>Keling, 20 ta so'zni birgalikda o'rganamiz</h3>
 <b>Cat (ket)</b> – mushuk: (kit) Tasavvur qiling, biz mushukni olib, kit ustiga o'tqazdik va ularning okean bo'ylab suzib ketayotganini tasavvur qiling.
 <br><br>
 <b>Opportunity (oportyuniti)</b> – imkoniyat: (otbor, tyulen) Tasavvur qiling, Antarktidada Miss tanloviga tyulenlarni saralash bosqichi o'tmoqda. Sizda ham bu tanlovga kirish imkoniyati bor.
@@ -414,8 +414,149 @@ Endi bir oz dam olamiz, bo'shashamiz va yuqoridagi uslubga amal qilib barcha so'
 <b>Ice (ays)</b> – muz: (aysberg) Tasavvur qiling, siz Antarktidada turibsiz va katta aysbergni ko'rdingiz. Bu juda chiroyli!
 <br><br>
 Barcha so'zlarni takrorlang!!!!!!!!!!!
+<h2>15 daqiqada 80 000 so'z - butun umr uchun etarli</h2>
+Qanaqasiga? Ishonmayman, atigi 15 daqiqa??? Bu ajoyib, siz aytasiz. Xoh ishoning, xoh ishonmang, bizni qiziqtirmaydi. Eng muhimi, biz buni qila olamiz va buni isbotlay olamiz. Agar bilsak, nega sizga ishonasiz? Axir ishonch bor joyda shubha ham bo'ladi-ku!
 <br><br>
+Shunday ekan, boshlaylik!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 <br><br>
+daqiqa - 50 ming so'z
+Bu usul poliglotlar orasida juda keng tarqalgan. Menimcha, siz bu haqda eshitgansiz.
+<br><br>
+Tilimizda boshqa tillardan kirib kelgan so‘zlar shunchalik ko‘pki, ular biznikiga o‘xshab qolgan. Ulardan ba’zilari – tion va – siya bilan tugaydi .
+<br><br>
+-
+Tsia
+
+–tion [∫n]
+<br><br>
+-
+
+Siya
+–sion [∫n]
+<br><br>
+-
+
+Action
+
+–ation [ei∫n]
+<br><br>
+Misollar:
+<br><br>
+Ambitsiya - ambitsiya, qism - qism, koalitsiya - koalitsiya, konsentratsiya - konsentratsiya, delegatsiya - delegatsiya, illyustratsiya - illyustratsiya, intonatsiya - intonatsiya, konservatsiya - konservatsiya, konvensiya - konvensiya, sanksiya - sanksiya, toj - toj kiyish, dissertatsiya - dissertatsiya, innovatsiya - innovatsiya, pensiya - pensiya, kasb - kasb, sezgi - sezgi, radiatsiya - radiatsiya, sensatsiya - sezgi, emlash - emlash, missiya - missiya, sessiya - sessiya, motivatsiya - motivatsiya, turg'unlik - turg'unlik, transplantatsiya - transplantatsiya, obro' - obro' .d.
+<br><br>
+Istisnolar: jami 35 ta istisno, masalan: tijorat, yozishmalar, masofa, tortishish, politsiya va boshqalar.
+<br><br>
+1 daqiqada - 10 ming so'z
+
+-
+
+Gia
+
+– gy [dzi]
+<br><br>
+Misollar:
+<br><br>
+Ekologiya - ekologiya, analogiya - analogiya, kardiologiya - kardiologiya, dermatologiya - dermatologiya, energetika - energetika, morfologiya - morfologiya, onkologiya - onkologiya, filologiya - filologiya, fiziologiya - fiziologiya, strategiya - strategiya, terminologiya - terminologiya, tipologiya - tipologiya va boshqalar. d.
+<br><br>
+5-7 ming so'z
+<br><br>
+Bu texnika ham juda oddiy. Vaqtning 95 foizida ishlaydi. Lekin tilimizda aralashib ketgan ruscha so‘zlarni ham ishlatishga to‘g‘ri keladi.
+<br><br>
+-
+
+a/ya bilan tugaydigan so‘zlar oxiridagi bu harflarni olib tashlang
+
+.
+<br><br>
+Misollar:
+<br><br>
+Muammo - muammo, azob - azob, armiya - armiya, yig'ilish - yig'ilish, akademiya - akademiya, amnistiya - amnistiya, arteriya - arteriya, atrofiya - atrofiya, hujum - hujum, aksioma - aksioma, ballada - ballada, banknot - banknot, batareya - akkumulyator, lotereya - lotereya, risola - risola, bronza - bronza, sigaret - sigaret, komediya - komediya, konservatoriya - konservatoriya, nusxa - nusxa, pazandalik - pazandalik, elita - elita, gerb - emblema, epilepsiya - epilepsiya, epopeya - epik, mozaika - mozaika, falsafa - falsafa, petarda - petarda, simfoniya - simfoniya, ayvon - ayvon, vaza - vaza va boshqalar.
+<br><br>
+Istisnolar: Istisnolar intuitivdir, masalan, biz so'z tutqichi tutqichlarini aytmaymiz yoki ustun ustunlar so'zini aytmaymiz, to'g'rimi? Buni baribir his qilasiz. Keyin oxirida A harfi bo'lgan so'zlar mavjud. Masalan: diaspora - diaspora, giena - giena va boshqalar.
+<br><br>
+10-14 ming so'z
+<br><br>
+Lotin tilidan olingan sifatlardan -n, -chnі oxirlarini olib tashlasak, ular ingliz tiliga aylanadi. Bu so'zlarni ham 95 foiz ishlatadi.
+<br><br>
+Misollar:
+<br><br>
+Global - global, massiv - massiv, shafqatsiz - shafqatsiz, nafis - nafis, mahalliy - mahalliy, progressiv - progressiv, ulug'vor - ulug'vor, mutlaq - mutlaq, rasmiy - rasmiy, aqliy - aqliy, radikal - radikal, kristalli - kristalli, mavhum - mavhum, samarali - samarali, liberal - liberal, parallel - parallel, agressiv - tajovuzkor va boshqalar.
+<br><br>
+Romantik - romantik, aristokratik - aristokratik, assimetrik - assimetrik, katastrofik - katastrofik, demokratik - demokratik, egosentrik - xudbin, epik - epik, ekzotik - ekzotik, fantastik - fantastik, organik - organik, vatanparvar - vatanparvar, she'riy-pramatik.
+<br><br>
+- pragmatik, tizimli - tizimli va boshqalar.
+<br><br>
+Istisnolar: bu turdagi so'zlar ham intuitivdir. Masalan: qizilni so'zdan olib tashlamayapmiz!!!
+<br><br>
+10 ming so'z
+<br><br>
+      Ushbu so'zlar guruhida - I harfi - ay sifatida o'qilishi kerak .
+<br><br>
+Ishtaha (eppitit) - ishtaha, bizon (bison) - bizon, mijoz (mijoz) - mijoz, murosa (kompromis) - murosa, diagramma (diagramma) - diagramma, dialog (dialog) - dialog, dialekt (dayelect) - dialekt, diametr (diametri) - diafragma, diafragma (diafragma) - diafragma, yakuniy (yaxshi) - yakuniy, belgi (piktogramma) - belgi, meteorit (meteorit) - meteorit, mikroskop (maykraskope) - mikroskop, mikrofon (mikrofon) - mikrofon, mil ( pochta) - mil, minus (minus) - minus, pirat (piret) - qaroqchi, vampir (vampir) - vampir, virus (virus) - virus, triumph (triumph) - g'alaba, uslub (uslub) - uslub, to'qimachilik (to'qimachilik) ) - to'qimachilik, pantomima (pantomima) - pantomima va boshqalar.
+<br><br>
+2-3 ming so'z
+<br><br>
+Ingliz tilida -ts tovushi yo'q, shuning uchun biz -s harfi bilan o'qiymiz. Ammo bitta istisno bor - bu "pitsa" so'zi, bu so'zlar shunday o'qiladi
+<br><br>
+"Pizza" chunki bu so'z italyan tilidan olingan. misollar: Markaz - markaz, sement - sement, sitrus - sitrus, tushuncha - tushuncha, silindr - silindr, intizom - intizom, sisterna - tank, vaksina - vaksina, urg'u - urg'u va boshqalar.
+<br><br>
+1000 so'z
+<br><br>
+Ba'zi so'zlarda, agar biz - g as - h harfini o'qisak, so'z ingliz tilida eshitiladi.
+<br><br>
+Misollar: Alkogol - alkogol, alkogol - alkogol, alkogolizm - alkogolizm, formaldegid - formaldegid, garmoniya - garmoniya, madhiya - madhiya, insonparvarlik - insonparvarlik, shifoxona - shifoxona, gipermarket
+<br><br>
+- gipermarket va boshqalar.
+
+1000 so'z
+<br><br>
+Keling, yana o'sha so'zlarga qaytaylik. Faqat aksentni o'zgartirishingiz kerak bo'lgan so'zlar bor va ular ingliz tilidagi kabi eshitiladi. Tilimizda aylanib yurgan bunday so‘zlar xotiramizda saqlanib qolgan.
+<br><br>
+Misollar: futbol - futbol, ​​akrobat - akrobat, admiral - admiral, alibi - alibi, amfora - amfora, tumor - tumor, antiseptik - antiseptik, aforizm - aforizm, antidepressant - antidepressant, aqualung - skuba jihozlari, argument - argument, aquarium , aristokrat - aristokrat, aspirin - aspirin, asteroid - asteroid, avenue - avenyu, avokado - avokado, muvozanat - muvozanat, bandit - bandit, banket - ziyofat, barometr - barometr, badaviy - badaviy, shaman
+<br><br>
+-shaman, bilaguzuk - bilaguzuk, brokkoli - brokkoli, kalendar - kalendar, kalkulyator - kalkulyator, karamel - karamel, katalog - katalog, tsenzura - sensor, shovinist - shovinist, klişe - klişe, klip - klip, donor - donor, kokteyl - kokteyl , detektiv - detektiv, ekstrakt - ko'chirma, fakt - fakt va boshqalar.
+<br><br>
+Bonus. Motivatsion dars.
+<br><br>
+Inglizcha lug'atlar ko'pincha odamlarning qalbini bostiradi. Nima uchun bu sodir bo'layotganini tushunmayapman. Hamma narsa juda oddiy, go'yoki matematik formulalarga o'xshaydi.
+<br><br>
+Sizni bir narsa bezovta qiladi: so'zlarning ma'nolari ko'p, shunday emasmi?
+<br><br>
+Siz uchun ajoyib sovg'am bor. Ingliz tilidagi so'zlarning 80% nima degan savollarga javob bera oladi? nima qilsa bo'ladi? Bu shuni anglatadiki, bir so'z ham ot, ham fe'l sifatida qabul qilinishi mumkin.
+<br><br>
+Misol: ish - ish, ish. Nima? Ish. Nima qilsa bo'ladi? Ish. Umid - umid, umid. Nima? Umid. Nima qilsa bo'ladi? Umid.
+<br><br>
+O'pish - nima? O'pish. Nima qilsa bo'ladi? O'pish.
+<br><br>
+Gapiring - nima? Gapiring. Nima qilsa bo'ladi? Gapiring.
+<br><br>
+Sut - nima? Sut. Nima qilsa bo'ladi? Sut.
+<br><br>
+Suv - nima? Suv. Nima qilsa bo'ladi? Suv.
+<br><br>
+Ko'z - nima? Ko'z. Nima qilsa bo'ladi? Qarang.
+<br><br>
+Yordam - nima? Yordam. Nima qilsa bo'ladi? Yordam.
+<br><br>
+Sinab ko'ring - nima? Urinish. Nima qilsa bo'ladi? Sinab ko'ring.
+<br><br>
+Nusxa ko'chirish - nima? Nusxalash. Nima qilsa bo'ladi? Hisobdan o'chirish. Film - nima? Kino. Nima qilsa bo'ladi? Film yarating.
+<br><br>
+Ichimlik - nima? Ichish. Nima qilsa bo'ladi? Ichish.
+<br><br>
+Va'da - nima? Va'da. Nima qilsa bo'ladi? Va'da.
+<br><br>
+Javob - nima? Javob. Nima qilsa bo'ladi? Javob bering.
+<br><br>
+Sevgi - nima? Sevgi. Nima qilsa bo'ladi? Sevgi.
+<br><br>
+Pedal - nima? Pedal. Nima qilsa bo'ladi? Pedal va boshqalar.
+<br><br>
+Bu sizning ishingizni ikki baravar osonlashtiradi. Siz ikkita so'zni o'rganmaysiz, bir vaqtning o'zida bitta so'zni o'rganasiz. Bitta o'q, bir tosh bilan ikkita qush. Boshqa hech bir tilda bunday imkoniyat yo'q, azizlarim.
+<br><br>
+20% hollarda ot va fe'l turli so'zlarni bildiradi.
+<br><br>
+1 uchun...
 </p>
         
             """),

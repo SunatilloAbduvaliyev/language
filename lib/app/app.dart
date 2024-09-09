@@ -23,7 +23,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => AuthCubit()),
         BlocProvider(create: (_) => UserBloc()),
         BlocProvider(create: (_) => TabBoxCubit()),
-        BlocProvider(create: (_) => GrammarCubit()),
+        BlocProvider(create: (_) => GrammarCubit()..fetAllGrammar()),
         BlocProvider(create: (_) => WordCategoryCubit()),
         BlocProvider(create: (_) => WordCubit()..fetchWord()),
         BlocProvider(create: (_)=>ChangeItemCubit())

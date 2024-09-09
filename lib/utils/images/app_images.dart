@@ -9,6 +9,7 @@ class AppImages{
   static const String dontLike = 'assets/icons/dont_like.svg';
   static const String eye = 'assets/icons/eye.svg';
   static const String audio = 'assets/icons/audio.svg';
+  static const String search = 'assets/icons/search.svg';
   //png
   static const String errorImage = 'assets/images/error_image.png';
   //lottie
