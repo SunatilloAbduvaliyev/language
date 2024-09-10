@@ -1,7 +1,7 @@
 import 'package:english/screen/tab_box/words/widget/category_item.dart';
 import 'package:english/screen/tab_box/words/widget/change_word_item.dart';
 import 'package:english/utils/extension/extension.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class WordCategoryItems extends SliverPersistentHeaderDelegate {
 

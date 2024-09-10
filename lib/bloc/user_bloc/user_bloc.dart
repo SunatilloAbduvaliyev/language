@@ -16,11 +16,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<InsertUserEvent>(_insertUser);
     on<FetchAllUserEvent>(_fetchAllUser);
     on<FetchUserEvent>(_fetUser);
-    on<UpdateLikeUserEvent>(_likeUpdate, transformer: droppable());
+    on<UpdateLikeUserEvent>(_likeUpdate);
     on<LoginInsertLikeUserEvent>(_loginLikeInsert, transformer: droppable());
     on<UserUpdateEvent>(_updateUser);
     on<UserInitialEvent>(_initialState);
-    on<UserLikeWordUpdateEvent>(_updateLikeWord, transformer: droppable());
+    on<UserLikeWordUpdateEvent>(_updateLikeWord);
   }
 
   Future<void> _insertUser(

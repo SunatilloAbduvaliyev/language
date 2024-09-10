@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:english/screen/route.dart';
+import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:english/utils/images/app_images.dart';
 import 'package:english/utils/style/app_text_style.dart';
@@ -10,27 +11,44 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SearchItem extends StatefulWidget {
   const SearchItem({
     super.key,
-    required this.listWords,
-    required this.title,
+    required this.allWords,
+    required this.userListWord,
   });
 
-  final List<WordModel> listWords;
-  final String title;
+  final List<WordModel> allWords;
+  final List<WordModel> userListWord;
 
   @override
   State<SearchItem> createState() => _SearchItemState();
 }
 
 class _SearchItemState extends State<SearchItem> {
+  List<WordModel> searchList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    searchList.addAll(widget.allWords);
+    searchList.addAll(widget.userListWord);
+    debugPrint(
+        '_________________________________________________________ user word list length ${widget.userListWord.length.toString()}');
+    debugPrint(
+        '_________________________________________________________ all word list length ${widget.allWords.length.toString()}');
+    debugPrint(
+        '_________________________________________________________ all list length ${searchList.length.toString()}');
+  }
+
   @override
   Widget build(BuildContext context) {
+    debugPrint(
+        '_________________________________________________________ search build run ${searchList.length.toString()}');
     return Center(
       child: Autocomplete<WordModel>(
         optionsBuilder: (TextEditingValue textEditingValue) {
-          if (textEditingValue.text == " ") {
+          if (textEditingValue.text == ' ') {
             return const Iterable<WordModel>.empty();
           }
-          return widget.listWords.where(
+          return searchList.where(
             (e) => e.english.toLowerCase().contains(
                   textEditingValue.text.toLowerCase(),
                 ),
@@ -60,13 +78,23 @@ class _SearchItemState extends State<SearchItem> {
                     controller: textEditingController,
                     focusNode: focusNode,
                     onFieldSubmitted: (String value) {
-                      focusNode.unfocus();
-                      textEditingController.clear();
+
                     },
                     scrollPadding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                     style: AppTextStyle.bold,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          focusNode.unfocus();
+                          textEditingController.text = '';
+                        },
+                        icon: const Icon(
+                          Icons.clear_outlined,
+                          size: 24,
+                          color: AppColors.c000000,
+                        ),
+                      ),
                       hintText: "search".tr(),
                       hintStyle: AppTextStyle.bold,
                       fillColor: Colors.white,

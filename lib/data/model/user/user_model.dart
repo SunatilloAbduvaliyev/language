@@ -10,7 +10,6 @@ class UserModel {
   final String fcmToken;
   final List<LikeDislikeModel> likes;
   final String email;
-  final String password;
   final Map<String, String> checkLike;
 
   UserModel({
@@ -21,7 +20,6 @@ class UserModel {
     required this.fcmToken,
     required this.likes,
     required this.email,
-    required this.password,
     required this.favouriteWords,
     required this.checkLike,
   });
@@ -42,7 +40,6 @@ class UserModel {
     fcmToken: json['fcm_token'] as String? ?? '',
     likes: (json['likes'] as List?)?.map((e)=>LikeDislikeModel.fromJson(e)).toList() ?? [],
       email: json['email'] as String? ?? '',
-      password: json['password'] as String? ?? '',
       checkLike: (json['check_like'] as Map<String, dynamic>?)?.map(
               (key, value) => MapEntry(key, value as String)) ?? {},
     );
@@ -58,7 +55,6 @@ class UserModel {
         'fcm_token': fcmToken,
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
-        'password':password,
         'check_like':checkLike,
       };
   Map<String, dynamic> toUpdateJson() =>
@@ -70,7 +66,6 @@ class UserModel {
         'fcm_token': fcmToken,
         'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
-        'password':password,
         'check_like':checkLike,
       };
 
@@ -83,7 +78,6 @@ class UserModel {
     String? fcmToken,
     List<LikeDislikeModel>? likes,
     String? email,
-    String? password,
     Map<String, String>? checkLike,
   }) {
     return UserModel(
@@ -94,7 +88,6 @@ class UserModel {
       fcmToken: fcmToken ?? this.fcmToken,
       likes: likes ?? this.likes,
       email: email ?? this.email,
-      password: password ?? this.password,
       favouriteWords: favouriteWords ?? this.favouriteWords,
       checkLike: checkLike ?? this.checkLike,
     );
@@ -109,7 +102,6 @@ class UserModel {
         fcmToken: '',
         likes: [],
         email: '',
-        password: '',
         favouriteWords: [],
         checkLike: {"learning_english_word":'kkkkk'},
       );

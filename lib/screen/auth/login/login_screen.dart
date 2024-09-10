@@ -35,9 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    Future.microtask((){
-      context.read<GrammarCubit>().fetAllGrammar();
-    });
     super.initState();
   }
 

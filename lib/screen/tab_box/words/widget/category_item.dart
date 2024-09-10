@@ -18,7 +18,7 @@ class _CategoryItemState extends State<CategoryItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Material(
       child: CupertinoSlidingSegmentedControl<int>(
         children: {
           0: Text(

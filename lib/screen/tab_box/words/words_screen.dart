@@ -60,30 +60,23 @@ class WordsScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: BlocBuilder<WordCategoryCubit, int>(
-              builder: (BuildContext context, int state) {
-                if(state == 0){
-                  return SearchItem(
-                    listWords: context.watch<WordCubit>().state.listWord,
-                    title: 'search_all'.tr(),
-                  ).paddingHorizontal(14);
-                }
-                 if(state == 1){
-                  return SearchItem(
-                    listWords: context.watch<UserBloc>().state.userData.words,
-                    title: 'search_me'.tr(),
-                  ).paddingHorizontal(14);
-                }
-                  return SearchItem(
-                    listWords: context.watch<UserBloc>().state.favouriteWord,
-                    title: 'search_favourite'.tr(),
-                  ).paddingHorizontal(14);
-
+            child: BlocBuilder<WordCubit, WordState>(
+              builder: (context, wordState) {
+                return BlocBuilder<UserBloc, UserState>(
+                  builder: (context, userState) {
+                    if (wordState.status == FormsStatus.success &&
+                        userState.status == FormsStatus.success) {
+                      return SearchItem(
+                        allWords: wordState.listWord,
+                        userListWord: userState.userData.words,
+                      ).paddingHorizontal(14);
+                    } else {
+                      return const CircularProgressIndicator(); // Show a loading indicator
+                    }
+                  },
+                );
               },
             ),
-          ),
-          SliverToBoxAdapter(
-            child: 10.boxH(),
           ),
           SliverPersistentHeader(
             delegate: WordCategoryItems(),
@@ -91,59 +84,60 @@ class WordsScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: BlocBuilder<WordCategoryCubit, int>(
-                builder: (BuildContext ctx, int state) {
-              if (state == 0) {
-                return BlocBuilder<WordCubit, WordState>(
-                  builder: (BuildContext ctx, WordState state) {
-                    if (state.listWord.isEmpty) {
-                      return emptyItem();
-                    }
-                    if (state.status == FormsStatus.loading) {
-                      return const LoadingWordTable().paddingHorizontal(14);
-                    }
-                    return context.watch<ChangeItemCubit>().state == 0
-                        ? WordTable(words: state.listWord)
-                            .paddingHorizontal(14.w)
-                        : WordListItem(
-                            listWords: state.listWord,
-                          ).paddingHorizontal(14);
-                  },
-                );
-              } else if (state == 1) {
+              builder: (BuildContext ctx, int state) {
+                if (state == 0) {
+                  return BlocBuilder<WordCubit, WordState>(
+                    builder: (BuildContext ctx, WordState state) {
+                      if (state.listWord.isEmpty) {
+                        return emptyItem();
+                      }
+                      if (state.status == FormsStatus.loading) {
+                        return const LoadingWordTable().paddingHorizontal(14);
+                      }
+                      return context.watch<ChangeItemCubit>().state == 0
+                          ? WordTable(words: state.listWord)
+                              .paddingHorizontal(14.w)
+                          : WordListItem(
+                              listWords: state.listWord,
+                            ).paddingHorizontal(14);
+                    },
+                  );
+                } else if (state == 1) {
+                  return BlocBuilder<UserBloc, UserState>(
+                    builder: (BuildContext ctx, UserState state) {
+                      if (state.userData.words.isEmpty) {
+                        return emptyItem();
+                      }
+                      if (state.status == FormsStatus.loading) {
+                        return const LoadingWordTable().paddingHorizontal(14);
+                      }
+                      return context.watch<ChangeItemCubit>().state == 0
+                          ? WordTable(words: state.userData.words)
+                              .paddingHorizontal(14.w)
+                          : WordListItem(
+                              listWords: state.userData.words,
+                            ).paddingHorizontal(14);
+                    },
+                  );
+                }
                 return BlocBuilder<UserBloc, UserState>(
                   builder: (BuildContext ctx, UserState state) {
-                    if (state.userData.words.isEmpty) {
+                    if (state.userData.favouriteWords.isEmpty) {
                       return emptyItem();
                     }
                     if (state.status == FormsStatus.loading) {
                       return const LoadingWordTable().paddingHorizontal(14);
                     }
                     return context.watch<ChangeItemCubit>().state == 0
-                        ? WordTable(words: state.userData.words)
+                        ? WordTable(words: state.userData.favouriteWords)
                             .paddingHorizontal(14.w)
                         : WordListItem(
-                            listWords: state.userData.words,
+                            listWords: state.userData.favouriteWords,
                           ).paddingHorizontal(14);
                   },
                 );
-              }
-              return BlocBuilder<UserBloc, UserState>(
-                builder: (BuildContext ctx, UserState state) {
-                  if (state.userData.favouriteWords.isEmpty) {
-                    return emptyItem();
-                  }
-                  if (state.status == FormsStatus.loading) {
-                    return const LoadingWordTable().paddingHorizontal(14);
-                  }
-                  return context.watch<ChangeItemCubit>().state == 0
-                      ? WordTable(words: state.userData.favouriteWords)
-                          .paddingHorizontal(14.w)
-                      : WordListItem(
-                          listWords: state.userData.favouriteWords,
-                        ).paddingHorizontal(14);
-                },
-              );
-            }),
+              },
+            ),
           )
         ],
       ),

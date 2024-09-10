@@ -172,7 +172,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     firstName: _firstNameController.text,
                     lastName: _lastNameController.text,
                     email: _emailController.text,
-                    password: _passwordController.text,
                   );
                   if(context.read<GrammarCubit>().state.status == FormsStatus.success){
                     List<GrammarModel> grammarLikes = context.read<GrammarCubit>().state.grammarData;
