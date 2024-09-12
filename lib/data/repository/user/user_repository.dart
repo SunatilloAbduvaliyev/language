@@ -1,16 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:english/data/model/user/like_dislike/like_dislike_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../../../utils/constants/constants.dart';
 import '../../model/grammar/grammar_model.dart';
+import '../../model/like_dislike/like_dislike_model.dart';
+import '../../model/main_like/main_like_model.dart';
 import '../../model/network_response.dart';
 import '../../model/user/user_model.dart';
 
 class UserRepository {
   Future<NetworkResponse> insertUser({required UserModel userModel}) async {
     try {
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('like_dislike')
+          .doc('Oxh6VznzNwRT6XecYPCQ').get();
+      MainLikeModel  mainLikeModel = MainLikeModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
+      userModel = userModel.copyWith(
+        likes: mainLikeModel.likes,
+      );
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         // User ma'lumotlarini UID bilan saqlash
@@ -124,51 +131,6 @@ class UserRepository {
   }
 
 
-  Future<NetworkResponse> loginLikeInsert({
-    required String userUid,
-    required List<GrammarModel> grammarData,
-  }) async {
-    try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-          .collection(AppConstants.userTableName)
-          .doc(userUid)
-          .get();
-
-      if (documentSnapshot.exists) {
-        UserModel userModel =
-            UserModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
-        List<LikeDislikeModel> likes = userModel.likes;
-        for(int i = userModel.likes.length-1; i<grammarData.length-1; i++){
-          LikeDislikeModel likeDislikeModel = LikeDislikeModel.initialValue();
-          likeDislikeModel = likeDislikeModel.copyWith(
-            contentId: grammarData[i].themeId,
-            contentUid: grammarData[i].docId
-          );
-          likes.add(likeDislikeModel);
-        }
-        likes.sort((a,b)=>a.contentId.compareTo(b.contentId));
-        userModel = userModel.copyWith(
-          likes: likes,
-        );
-        debugPrint("login like _____________________________ ${userModel.likes.length}");
-        await FirebaseFirestore.instance
-            .collection(AppConstants.userTableName)
-            .doc(userUid)
-            .update(userModel.toUpdateJson());
-        return NetworkResponse(
-          data: userModel,
-        );
-      } else {
-        debugPrint("____________________________________________ user ma'lumot kelmadi.");
-        return NetworkResponse(
-          errorMessage:
-              "Like ma'lumotlarida xato. Iltimos yangi account oching.",
-        );
-      }
-    } catch (error) {
-      return NetworkResponse(errorMessage: error.toString());
-    }
-  }
 
   Future<NetworkResponse> userUpdate({required UserModel userModel}) async {
     try {

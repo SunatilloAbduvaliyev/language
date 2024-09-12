@@ -11,6 +11,7 @@ import 'package:english/screen/tab_box/words/widget/word_category_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_list_item.dart';
 import 'package:english/screen/tab_box/words/widget/word_table.dart';
 import 'package:english/screen/widgets/global_drawer.dart';
+import 'package:english/screen/widgets/shimmers/shimmer_item.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -61,18 +62,20 @@ class WordsScreen extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: BlocBuilder<WordCubit, WordState>(
-              builder: (context, wordState) {
+              builder: (BuildContext context, WordState wordState) {
                 return BlocBuilder<UserBloc, UserState>(
-                  builder: (context, userState) {
+                  builder: (BuildContext context, UserState userState) {
                     if (wordState.status == FormsStatus.success &&
                         userState.status == FormsStatus.success) {
                       return SearchItem(
                         allWords: wordState.listWord,
                         userListWord: userState.userData.words,
                       ).paddingHorizontal(14);
-                    } else {
-                      return const CircularProgressIndicator(); // Show a loading indicator
                     }
+                    return shimmerItem(
+                      shimmerHeight: 70,
+                      shimmerWidth: double.infinity,
+                    ).paddingHorizontal(14);
                   },
                 );
               },

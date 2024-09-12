@@ -6,7 +6,6 @@ import '../../model/network_response.dart';
 class GrammarRepository {
   Future<NetworkResponse> fetchAllGrammar() async {
     try {
-      // Initialize Firebase
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection(AppConstants.grammarTableName)
           .get();

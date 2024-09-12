@@ -8,7 +8,6 @@ class UserState {
   final FormsStatus status;
   final UserModel userData;
   final List<UserModel> allUserData;
-  final bool isGrammarSuccess;
   final Set<int> loadingIndex;
   final List<WordModel> favouriteWord;
 
@@ -18,7 +17,6 @@ class UserState {
     required this.status,
     required this.userData,
     required this.allUserData,
-    required this.isGrammarSuccess,
     required this.loadingIndex,
   });
 
@@ -37,7 +35,6 @@ class UserState {
       status: status ?? this.status,
       userData: userData ?? this.userData,
       allUserData: allUserData ?? this.allUserData,
-      isGrammarSuccess: isGrammarSuccess ?? this.isGrammarSuccess,
       loadingIndex:  loadingIndex ?? this.loadingIndex,
     );
   }
@@ -48,7 +45,6 @@ class UserState {
         status: FormsStatus.pure,
         userData: UserModel.initialValue(),
         allUserData: [],
-        isGrammarSuccess: false,
         loadingIndex: {}
       );
 }

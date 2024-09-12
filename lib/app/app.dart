@@ -26,7 +26,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => GrammarCubit()..fetAllGrammar()),
         BlocProvider(create: (_) => WordCategoryCubit()),
         BlocProvider(create: (_) => WordCubit()..fetchWord()),
-        BlocProvider(create: (_)=>ChangeItemCubit())
+        BlocProvider(create: (_)=>ChangeItemCubit()),
       ],
       child: const MyApp(),
     );

@@ -31,9 +31,9 @@ class _LoginButtonState extends State<LoginButton> {
         child: AnimatedContainer(
           decoration: BoxDecoration(
             color: Colors.blueAccent,
-            borderRadius: widget.isLoading?null:BorderRadius.circular(16.w),
+            borderRadius: BorderRadius.circular(16.w),
           ),
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.linear,
           width: widget.isLoading ? 70.h : 300.w,
           height: 65.h,

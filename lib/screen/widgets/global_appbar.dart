@@ -15,7 +15,6 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool navigatePop;
   final Color? backgroundColor, color;
 
-
   const GlobalAppBar({
     super.key,
     required this.title,
@@ -31,7 +30,8 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
       builder: (BuildContext context, UserState state) {
         if (state.status == FormsStatus.success ||
             state.status == FormsStatus.updateLoading) {
-          debugPrint("UserModel insert uid ______________________________ ${state.userData.uid}");
+          debugPrint(
+              "UserModel insert uid ______________________________ ${state.userData.uid}");
           return AppBar(
             backgroundColor: backgroundColor ?? AppColors.cF3F3F3,
             scrolledUnderElevation: 0,
@@ -45,7 +45,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon:  Icon(
+                    icon: Icon(
                       Icons.arrow_back_ios,
                       color: color ?? AppColors.c000000,
                     ),
@@ -73,16 +73,20 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
             title: Text(
               title.tr(),
-              style: AppTextStyle.bold.copyWith(
-                fontSize: 18,
-                color: color ?? AppColors.c000000
-              ),
+              style: AppTextStyle.bold
+                  .copyWith(fontSize: 18, color: color ?? AppColors.c000000),
             ),
             actions: actions,
             centerTitle: true,
           );
         }
         return AppBar(
+          scrolledUnderElevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light,
+            statusBarColor: AppColors.c356899.withOpacity(0.6),
+          ),
           leading: IconButton(
             onPressed: () {},
             icon: Shimmer.fromColors(

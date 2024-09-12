@@ -4,5 +4,6 @@ enum FormsStatus{
   success,
   error,
   updateLoading,
+  networkError,
 }
 

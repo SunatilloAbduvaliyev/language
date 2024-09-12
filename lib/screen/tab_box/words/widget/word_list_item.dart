@@ -30,10 +30,11 @@ class _WordListItemState extends State<WordListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: List.generate(
-        widget.listWords.length,
-        (int index) => ListTile(
+    return ListView.builder(
+      itemCount: widget.listWords.length,
+      shrinkWrap: true,
+      itemBuilder: (BuildContext context, int index){
+        return ListTile(
           onTap: () {
             Navigator.pushNamed(
               context,
@@ -68,41 +69,41 @@ class _WordListItemState extends State<WordListItem> {
                       if (state.userData.checkLike
                           .containsKey(widget.listWords[index].english)) {
                         context.read<UserBloc>().add(
-                              UserLikeWordUpdateEvent(
-                                isTrue: true,
-                                wordModel: widget.listWords[index],
-                                userModel: state.userData,
-                              ),
-                            );
+                          UserLikeWordUpdateEvent(
+                            isTrue: true,
+                            wordModel: widget.listWords[index],
+                            userModel: state.userData,
+                          ),
+                        );
                       } else {
                         context.read<UserBloc>().add(
-                              UserLikeWordUpdateEvent(
-                                wordModel: widget.listWords[index],
-                                userModel: state.userData,
-                              ),
-                            );
+                          UserLikeWordUpdateEvent(
+                            wordModel: widget.listWords[index],
+                            userModel: state.userData,
+                          ),
+                        );
                       }
                     },
                     icon: state.status == FormsStatus.updateLoading
                         ? const CupertinoActivityIndicator(
-                            color: AppColors.c000000,
-                          )
+                      color: AppColors.c000000,
+                    )
                         : Icon(
-                            state.userData.checkLike.containsKey(
-                                    widget.listWords[index].english)
-                                ? Icons.star
-                                : Icons.star_border,
-                            color: Colors.yellow,
-                            size: 30,
-                          ),
+                      state.userData.checkLike.containsKey(
+                          widget.listWords[index].english)
+                          ? Icons.star
+                          : Icons.star_border,
+                      color: Colors.yellow,
+                      size: 30,
+                    ),
                   );
                 },
               ),
             ],
           ),
           leading: toSpeakButton(speakText: widget.listWords[index].english),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
+import '../like_dislike/like_dislike_model.dart';
 import '../word/word_model.dart';
-import 'like_dislike/like_dislike_model.dart';
 
 class UserModel {
   final String uid;

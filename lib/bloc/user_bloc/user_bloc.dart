@@ -1,15 +1,14 @@
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
 import 'package:english/bloc/user_bloc/user_state.dart';
 import 'package:english/data/model/forms_status.dart';
 import 'package:english/data/model/network_response.dart';
-import 'package:english/data/model/user/like_dislike/like_dislike_model.dart';
 import 'package:english/data/model/user/user_model.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:english/data/repository/user/user_repository.dart';
 import 'package:english/services/services_locator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/model/like_dislike/like_dislike_model.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState.initialValue()) {
@@ -17,7 +16,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<FetchAllUserEvent>(_fetchAllUser);
     on<FetchUserEvent>(_fetUser);
     on<UpdateLikeUserEvent>(_likeUpdate);
-    on<LoginInsertLikeUserEvent>(_loginLikeInsert, transformer: droppable());
     on<UserUpdateEvent>(_updateUser);
     on<UserInitialEvent>(_initialState);
     on<UserLikeWordUpdateEvent>(_updateLikeWord);
@@ -26,28 +24,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void> _insertUser(
       InsertUserEvent event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: FormsStatus.loading));
-    UserModel userModel = event.insertUserData;
-    List<LikeDislikeModel> likes = [];
-    if (event.isGrammarSuccess) {
-      for (int i = 0; i <= event.grammarLikes.length - 1; i++) {
-        LikeDislikeModel likeModel = LikeDislikeModel.initialValue();
-        likeModel = likeModel.copyWith(
-          contentId: event.grammarLikes[i].themeId,
-          contentUid: event.grammarLikes[i].docId,
-        );
-        likes.add(likeModel);
-      }
-      likes.sort((a, b) => a.contentId.compareTo(b.contentId));
-      userModel = userModel.copyWith(likes: likes);
-    }
     NetworkResponse response =
-        await getIt<UserRepository>().insertUser(userModel: userModel);
+        await getIt<UserRepository>().insertUser(userModel: event.insertUserData);
     if (response.errorMessage.isEmpty) {
       emit(
         state.copyWith(
           status: FormsStatus.success,
           userData: response.data,
-          isGrammarSuccess: event.isGrammarSuccess,
         ),
       );
     } else {
@@ -145,29 +128,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _loginLikeInsert(
-      LoginInsertLikeUserEvent event, Emitter<UserState> emit) async {
-    emit(state.copyWith(status: FormsStatus.loading));
-    NetworkResponse response = await getIt<UserRepository>().loginLikeInsert(
-      userUid: event.userUid,
-      grammarData: event.grammarData,
-    );
-    if (response.errorMessage.isEmpty) {
-      emit(
-        state.copyWith(
-          status: FormsStatus.success,
-          userData: response.data,
-        ),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          status: FormsStatus.error,
-          errorMessage: response.errorMessage,
-        ),
-      );
-    }
-  }
+
 
   Future<void> _updateUser(
       UserUpdateEvent event, Emitter<UserState> emit) async {

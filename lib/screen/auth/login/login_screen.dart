@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
-import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
-import 'package:english/data/model/grammar/grammar_model.dart';
 import 'package:english/screen/widgets/change_language_button.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../bloc/user_bloc/user_bloc.dart';
 import '../../../cubit/auth_cubit/auth_cubit.dart';
 import '../../../cubit/auth_cubit/auth_state.dart';
 import '../../../data/model/forms_status.dart';
@@ -142,24 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   currentState.status == FormsStatus.success,
               listener: (BuildContext context, AuthState state) {
                 if (state.status == FormsStatus.success) {
-                  if (context.read<GrammarCubit>().state.status ==
-                      FormsStatus.success) {
-                    debugPrint("______________________________ grammar success length ${context.read<GrammarCubit>().state.grammarData.length.toString()}");
-                    List<GrammarModel> grammarData =
-                        context.read<GrammarCubit>().state.grammarData;
-                    context.read<UserBloc>().add(
-                          LoginInsertLikeUserEvent(
-                            userUid: state.user!.uid,
-                            grammarData: grammarData,
-                          ),
-                        );
-                  } else {
-                    context.read<UserBloc>().add(
-                          FetchUserEvent(
-                            userDocId: state.user!.uid,
-                          ),
-                        );
-                  }
+                  context.read<UserBloc>().add(FetchUserEvent(userDocId: state.user!.uid));
                   Navigator.pushNamed(context, RouteName.tabBoxScreen);
                 }
                 if (state.status == FormsStatus.error) {

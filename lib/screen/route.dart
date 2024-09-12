@@ -7,6 +7,7 @@ import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/learning_word_screen/learning_word_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
 import 'package:english/screen/word_detail/word_detail_screen.dart';
+import 'package:english/screen/word_game/word_game_screen.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class AppRoute{
       case RouteName.learningWord:
         return navigate(const LearningWordScreen());
 
+      case RouteName.wordGame:
+        return navigate(const WordGameScreen());
+
       default:
         return navigate(
           Scaffold(
@@ -62,4 +66,5 @@ class RouteName{
   static const  String addWord = '/add_word';
   static const String wordDetail = '/word_detail';
   static const String learningWord = '/learning_word';
+  static const String wordGame = '/word_game';
 }

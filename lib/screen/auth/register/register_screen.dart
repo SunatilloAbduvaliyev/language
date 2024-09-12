@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import '../../../bloc/user_bloc/user_event.dart';
 import '../../../cubit/auth_cubit/auth_cubit.dart';
 import '../../../cubit/auth_cubit/auth_state.dart';
 import '../../../data/model/forms_status.dart';
-import '../../../data/model/grammar/grammar_model.dart';
 import '../../../data/model/user/user_model.dart';
 import '../../../utils/color/app_colors.dart';
 import '../../../utils/constants/constants.dart';
@@ -20,7 +18,6 @@ import '../../widgets/change_language_button.dart';
 import '../../widgets/login_button.dart';
 import '../widget/input_text.dart';
 import '../widget/row_item_button.dart';
-
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -56,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       Align(
+                      Align(
                         alignment: Alignment.topLeft,
                         child: changeLanguageButton(context),
                       ),
@@ -132,16 +129,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       25.boxH(),
                       LoginButton(
                         title: 'register'.tr(),
-                        onTap: state.status == FormsStatus.success? (){}:() {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<AuthCubit>().register(
-                              email: _emailController.text,
-                              password: _passwordController.text,
-                              name: _firstNameController.text,
-                            );
-                          }
-                        },
-                        isLoading: state.status == FormsStatus.loading ,
+                        onTap: state.status == FormsStatus.success
+                            ? () {}
+                            : () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().register(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        name: _firstNameController.text,
+                                      );
+                                }
+                              },
+                        isLoading: state.status == FormsStatus.loading,
                         success: state.status == FormsStatus.success,
                       ),
                       15.boxH(),
@@ -151,10 +150,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           onTap: state.status == FormsStatus.loading
                               ? () {}
                               : () {
-                            context.read<AuthCubit>().initialState();
-                            Navigator.pushReplacementNamed(
-                                context, RouteName.login);
-                          },
+                                  context.read<AuthCubit>().initialState();
+                                  Navigator.pushReplacementNamed(
+                                      context, RouteName.login);
+                                },
                           login: false,
                         ),
                       )
@@ -163,7 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 );
               },
               listenWhen: (previous, current) =>
-              current.status == FormsStatus.success ||
+                  current.status == FormsStatus.success ||
                   current.status == FormsStatus.error,
               listener: (BuildContext context, AuthState state) {
                 if (state.status == FormsStatus.success) {
@@ -173,25 +172,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     lastName: _lastNameController.text,
                     email: _emailController.text,
                   );
-                  if(context.read<GrammarCubit>().state.status == FormsStatus.success){
-                    List<GrammarModel> grammarLikes = context.read<GrammarCubit>().state.grammarData;
-                    context.read<UserBloc>().add(
-                      InsertUserEvent(
-                          insertUserData: userModel,
-                          isGrammarSuccess: true,
-                          grammarLikes: grammarLikes,
-                      ),
-                    );
-                  }else{
-                    context.read<UserBloc>().add(
-                      InsertUserEvent(
-                        insertUserData: userModel,
-                        isGrammarSuccess: false,
-                        grammarLikes: [],
-                      ),
-                    );
-                  }
-                  Navigator.pushReplacementNamed(context, RouteName.tabBoxScreen);
+                  context
+                      .read<UserBloc>()
+                      .add(InsertUserEvent(insertUserData: userModel));
+
+                  Navigator.pushReplacementNamed(
+                      context, RouteName.tabBoxScreen);
                 }
                 if (state.status == FormsStatus.error) {
                   showErrorMessage(

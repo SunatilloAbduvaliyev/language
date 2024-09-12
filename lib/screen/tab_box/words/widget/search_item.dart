@@ -78,7 +78,6 @@ class _SearchItemState extends State<SearchItem> {
                     controller: textEditingController,
                     focusNode: focusNode,
                     onFieldSubmitted: (String value) {
-
                     },
                     scrollPadding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 0),

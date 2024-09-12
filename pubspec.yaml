@@ -55,10 +55,11 @@ flutter:
   uses-material-design: true
 
   assets:
-     - assets/images/
-     - assets/icons/
-     - assets/translation/
-     - assets/lottie/
+      - assets/images/
+      - assets/images/word_game_images/
+      - assets/icons/
+      - assets/translation/
+      - assets/lottie/
 
 
   # fonts:

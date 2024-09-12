@@ -11,12 +11,6 @@ class AuthRepository {
     required String name,
   }) async {
     try {
-      List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-      if (connectivityResult.contains(ConnectivityResult.none)) {
-        return NetworkResponse(
-          errorMessage: 'no_internet_connection',
-        );
-      }
       UserCredential userCredential =
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -49,12 +43,6 @@ class AuthRepository {
     required String password,
   }) async {
     try {
-      List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-      if (connectivityResult.contains(ConnectivityResult.none)) {
-        return NetworkResponse(
-          errorMessage: 'no_internet_connection',
-        );
-      }
       UserCredential userCredential =
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
