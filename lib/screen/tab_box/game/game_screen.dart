@@ -18,7 +18,7 @@ class GameScreen extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, RouteName.wordGame);
+                Navigator.pushNamed(context, RouteName.wordStartedScreen);
               },
               child: Text(
                 'Word Game',

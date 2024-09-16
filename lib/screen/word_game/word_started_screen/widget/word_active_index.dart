@@ -1,0 +1,1 @@
+int wordActiveIndex = -1;

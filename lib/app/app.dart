@@ -6,6 +6,7 @@ import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
 import 'package:english/cubit/tab_box_cubit/tab_box_cubit.dart';
 import 'package:english/cubit/word_category_cubit/word_category_cubit.dart';
 import 'package:english/cubit/word_cubit/word_cubit.dart';
+import 'package:english/cubit/word_game/word_game_cubit.dart';
 import 'package:english/screen/route.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
@@ -27,6 +28,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => WordCategoryCubit()),
         BlocProvider(create: (_) => WordCubit()..fetchWord()),
         BlocProvider(create: (_)=>ChangeItemCubit()),
+        BlocProvider(create: (_)=>WordGameCubit()),
       ],
       child: const MyApp(),
     );

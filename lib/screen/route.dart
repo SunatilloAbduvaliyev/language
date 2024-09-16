@@ -7,13 +7,15 @@ import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/learning_word_screen/learning_word_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
 import 'package:english/screen/word_detail/word_detail_screen.dart';
-import 'package:english/screen/word_game/word_game_screen.dart';
+import 'package:english/screen/word_game/word_game_screen/word_game_screen.dart';
+import 'package:english/screen/word_game/word_started_screen/word_started_screen.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class AppRoute{
-  static Route generateRoute(RouteSettings settings){
-    switch(settings.name){
+
+class AppRoute {
+  static Route generateRoute(RouteSettings settings) {
+    switch (settings.name) {
       case RouteName.login:
         return navigate(const LoginScreen());
 
@@ -24,7 +26,8 @@ class AppRoute{
         return navigate(const TabBoxScreen());
 
       case RouteName.grammarDetail:
-        return navigate( GrammarDetailScreen(grammarModel: settings.arguments as GrammarModel));
+        return navigate(GrammarDetailScreen(
+            grammarModel: settings.arguments as GrammarModel));
 
       case RouteName.addWord:
         return navigate(const AddWordScreen());
@@ -39,8 +42,15 @@ class AppRoute{
       case RouteName.learningWord:
         return navigate(const LearningWordScreen());
 
-      case RouteName.wordGame:
-        return navigate(const WordGameScreen());
+      case RouteName.wordStartedScreen:
+        return navigate(const WordStartedGameScreen());
+
+      case RouteName.wordGameScreen:
+        return navigate(
+          WordGameScreen(
+            listWord: settings.arguments as List<WordModel>,
+          ),
+        );
 
       default:
         return navigate(
@@ -55,16 +65,19 @@ class AppRoute{
         );
     }
   }
-  static navigate(Widget widget)=>CupertinoPageRoute(builder: (context)=>widget);
+
+  static navigate(Widget widget) =>
+      CupertinoPageRoute(builder: (context) => widget);
 }
 
-class RouteName{
+class RouteName {
   static const String login = '/login';
-  static const  String register = '/register';
-  static const  String tabBoxScreen = '/tab_box';
-  static const  String grammarDetail = '/grammar_detail';
-  static const  String addWord = '/add_word';
+  static const String register = '/register';
+  static const String tabBoxScreen = '/tab_box';
+  static const String grammarDetail = '/grammar_detail';
+  static const String addWord = '/add_word';
   static const String wordDetail = '/word_detail';
   static const String learningWord = '/learning_word';
-  static const String wordGame = '/word_game';
+  static const String wordStartedScreen = '/word_started';
+  static const String wordGameScreen = '/word_game';
 }
