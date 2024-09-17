@@ -55,7 +55,7 @@ Widget wordTable() {
             ),
           ),
           Positioned(
-            top: 350.h,
+            top: 340.h,
             right: 80.w,
             left: 80.w,
             child: tableButton(

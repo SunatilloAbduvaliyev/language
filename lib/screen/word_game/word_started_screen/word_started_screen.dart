@@ -127,6 +127,8 @@ class _WordStartedGameScreenState extends State<WordStartedGameScreen> {
                                       trueAnswer: checkWord[0].english,
                                       questionWord:
                                       checkWord[0].translateWord,
+                                      wordIndex: 0,
+                                      wordLength: checkWord.length-1,
                                     );
                                     Navigator.pushNamed(
                                         context, RouteName.wordGameScreen,
