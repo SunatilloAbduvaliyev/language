@@ -20,19 +20,17 @@ class WordGameCubit extends Cubit<WordGameState> {
       wordLetter.add(getRandomLetter());
     }
     wordLetter.shuffle();
-    if (wordIndex == wordLength!) {
-      emit(
-        state.copyWith(
-          status: FormsStatus.updateLoading,
-        ),
-      );
-    }
+    wordIndex = wordIndex + 1;
     emit(
       state.copyWith(
         trueAnswer: trueAnswer,
         questionWord: questionWord,
         wordLetter: wordLetter,
-        wordIndex: wordIndex++,
+        wordIndex: wordIndex,
+        word: '',
+        activeButton: [],
+        status: FormsStatus.pure,
+        listLength: wordLength,
       ),
     );
   }
@@ -78,17 +76,17 @@ class WordGameCubit extends Cubit<WordGameState> {
   }) {
     String checkAnswer = state.word + word;
     if (checkAnswer == state.trueAnswer.toUpperCase()) {
-      List<int> listIndex = state.activeButton;
-      listIndex.add(activeButton);
-      emit(
-        state.copyWith(
-          status: FormsStatus.success,
-          word: checkAnswer,
-          activeButton: listIndex,
-        ),
-      );
+        List<int> listIndex = state.activeButton;
+        listIndex.add(activeButton);
+        emit(
+          state.copyWith(
+            status: FormsStatus.success,
+            word: checkAnswer,
+            activeButton: listIndex,
+          ),
+        );
     } else {
-      if (checkAnswer.length == state.trueAnswer.length) {
+      if (checkAnswer.length >= state.trueAnswer.length) {
         emit(
           state.copyWith(
             status: FormsStatus.error,
@@ -126,12 +124,22 @@ class WordGameCubit extends Cubit<WordGameState> {
         oldWord += state.word[i]; // Boshqa harflarni qo'shamiz
       }
     }
-
-    emit(
-      state.copyWith(
-        activeButton: listIndex,
-        word: oldWord,
-      ),
-    );
+    if (oldWord == state.trueAnswer.toUpperCase()) {
+      emit(
+        state.copyWith(
+          status: FormsStatus.success,
+          word: oldWord,
+          activeButton: listIndex,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          status: FormsStatus.error,
+          word: oldWord,
+          activeButton: listIndex,
+        ),
+      );
+    }
   }
 }

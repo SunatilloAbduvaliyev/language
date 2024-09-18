@@ -8,6 +8,7 @@ class WordGameState {
   final List<String> wordLetter;
   final List<int> activeButton;
   final int wordIndex;
+  final int listLength;
 
   WordGameState({
     required this.word,
@@ -17,6 +18,7 @@ class WordGameState {
     required this.wordLetter,
     required this.activeButton,
     required this.wordIndex,
+    required this.listLength,
   });
 
   WordGameState copyWith({
@@ -27,6 +29,7 @@ class WordGameState {
     List<String>? wordLetter,
     List<int>? activeButton,
     int? wordIndex,
+    int? listLength,
   }) =>
       WordGameState(
         wordIndex: wordIndex ?? this.wordIndex,
@@ -36,6 +39,7 @@ class WordGameState {
         trueAnswer: trueAnswer ?? this.trueAnswer,
         status: status ?? this.status,
         wordLetter: wordLetter ?? this.wordLetter,
+        listLength: listLength ?? this.listLength,
       );
 
   static WordGameState initialValue() => WordGameState(
@@ -46,5 +50,6 @@ class WordGameState {
         wordLetter: [],
         activeButton: [],
         wordIndex: 0,
+        listLength: 0,
       );
 }

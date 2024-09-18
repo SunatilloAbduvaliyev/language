@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/screen/route.dart';
+import 'package:english/screen/tab_box/game/widget/game_button.dart';
 import 'package:english/screen/widgets/global_appbar.dart';
 import 'package:english/utils/extension/extension.dart';
-import 'package:english/utils/style/app_text_style.dart';
+import 'package:english/utils/images/app_images.dart';
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatelessWidget {
@@ -16,14 +17,16 @@ class GameScreen extends StatelessWidget {
         ),
         body: Column(
           children: [
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RouteName.wordStartedScreen);
-              },
-              child: Text(
-                'Word Game',
-                style: AppTextStyle.bold,
-              ),
+            Row(
+              children: [
+                gameButton(
+                  onTap: (){
+                    Navigator.pushNamed(context, RouteName.wordStartedScreen,);
+                  },
+                  imagePath: AppImages.wordLogo,
+                  title: "word_game",
+                ),
+              ],
             )
           ],
         ).paddingHorizontal(14));
