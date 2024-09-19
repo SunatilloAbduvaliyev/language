@@ -76,15 +76,15 @@ class WordGameCubit extends Cubit<WordGameState> {
   }) {
     String checkAnswer = state.word + word;
     if (checkAnswer == state.trueAnswer.toUpperCase()) {
-        List<int> listIndex = state.activeButton;
-        listIndex.add(activeButton);
-        emit(
-          state.copyWith(
-            status: FormsStatus.success,
-            word: checkAnswer,
-            activeButton: listIndex,
-          ),
-        );
+      List<int> listIndex = state.activeButton;
+      listIndex.add(activeButton);
+      emit(
+        state.copyWith(
+          status: FormsStatus.success,
+          word: checkAnswer,
+          activeButton: listIndex,
+        ),
+      );
     } else {
       if (checkAnswer.length >= state.trueAnswer.length) {
         emit(
@@ -124,7 +124,7 @@ class WordGameCubit extends Cubit<WordGameState> {
         oldWord += state.word[i]; // Boshqa harflarni qo'shamiz
       }
     }
-    if (oldWord == state.trueAnswer.toUpperCase()) {
+    if (oldWord == state.trueAnswer.toUpperCase() ) {
       emit(
         state.copyWith(
           status: FormsStatus.success,
@@ -135,7 +135,7 @@ class WordGameCubit extends Cubit<WordGameState> {
     } else {
       emit(
         state.copyWith(
-          status: FormsStatus.error,
+          status: FormsStatus.pure,
           word: oldWord,
           activeButton: listIndex,
         ),

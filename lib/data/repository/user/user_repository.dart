@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../utils/constants/constants.dart';
-import '../../model/grammar/grammar_model.dart';
-import '../../model/like_dislike/like_dislike_model.dart';
 import '../../model/main_like/main_like_model.dart';
 import '../../model/network_response.dart';
 import '../../model/user/user_model.dart';
