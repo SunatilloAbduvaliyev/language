@@ -30,23 +30,15 @@ class _SearchItemState extends State<SearchItem> {
     super.initState();
     searchList.addAll(widget.allWords);
     searchList.addAll(widget.userListWord);
-    debugPrint(
-        '_________________________________________________________ user word list length ${widget.userListWord.length.toString()}');
-    debugPrint(
-        '_________________________________________________________ all word list length ${widget.allWords.length.toString()}');
-    debugPrint(
-        '_________________________________________________________ all list length ${searchList.length.toString()}');
   }
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(
-        '_________________________________________________________ search build run ${searchList.length.toString()}');
     return Center(
       child: Autocomplete<WordModel>(
         optionsBuilder: (TextEditingValue textEditingValue) {
-          if (textEditingValue.text == ' ') {
-            return const Iterable<WordModel>.empty();
+          if (textEditingValue.text.isEmpty) {
+            return searchList; // Barcha elementlarni qaytarish
           }
           return searchList.where(
             (e) => e.english.toLowerCase().contains(
@@ -77,7 +69,10 @@ class _SearchItemState extends State<SearchItem> {
                   child: TextFormField(
                     controller: textEditingController,
                     focusNode: focusNode,
-                    onFieldSubmitted: (String value) {
+                    textInputAction: TextInputAction.done,
+                    onFieldSubmitted: (String value){
+                      textEditingController.clear();
+                      focusNode.unfocus();
                     },
                     scrollPadding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
@@ -86,7 +81,7 @@ class _SearchItemState extends State<SearchItem> {
                       suffixIcon: IconButton(
                         onPressed: () {
                           focusNode.unfocus();
-                          textEditingController.text = '';
+                          textEditingController.clear();
                         },
                         icon: const Icon(
                           Icons.clear_outlined,
@@ -116,12 +111,6 @@ class _SearchItemState extends State<SearchItem> {
                           color: Colors.white,
                         ),
                       ),
-                      errorBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1,
-                          color: Colors.white,
-                        ),
-                      ),
                       focusedBorder: const OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 1,
@@ -139,6 +128,45 @@ class _SearchItemState extends State<SearchItem> {
                 ),
                 10.boxW(),
               ],
+            ),
+          );
+        },
+        optionsViewBuilder: (
+          BuildContext context,
+          AutocompleteOnSelected<WordModel> onSelected,
+          Iterable<WordModel> options,
+        ) {
+          return Align(
+            alignment: Alignment.topLeft,
+            child: Material(
+              elevation: 4,
+              child: Container(
+                width: 300.w,
+                height: 200.h,
+                color: Colors.white,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: options.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final WordModel option = options.elementAt(index);
+
+                    return ListTile(
+                      title: Text(
+                        option.english,
+                        style: AppTextStyle.bold.copyWith(
+                          color: AppColors.c000000,
+                          fontSize: 18,
+                        ),
+                      ),
+                      onTap: () => onSelected(option),
+                      leading: const Icon(
+                        Icons.search,
+                        color: AppColors.c000000,
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           );
         },

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/cubit/word_cubit/word_cubit.dart';
 import 'package:english/cubit/word_game/word_game_cubit.dart';
@@ -45,7 +46,7 @@ class _WordStartedGameScreenState extends State<WordStartedGameScreen> {
                 left: 5,
                 child: wordTitle(
                   title:
-                      "So'zlarni Tering va Writingizni va Lug'atingizni mustahkamlang",
+                      "manual_word_game".tr(),
                 ),
               ),
               Positioned(

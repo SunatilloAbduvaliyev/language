@@ -87,11 +87,13 @@ class UserLikeWordUpdateEvent extends UserEvent  with EquatableMixin{
   final bool isTrue;
   final WordModel wordModel;
   final UserModel userModel;
+  final int index;
 
   UserLikeWordUpdateEvent({
     this.isTrue = false,
     required this.wordModel,
     required this.userModel,
+    required this.index,
   });
 
   @override
@@ -99,5 +101,6 @@ class UserLikeWordUpdateEvent extends UserEvent  with EquatableMixin{
     isTrue,
     wordModel,
     userModel,
+    index,
   ];
 }

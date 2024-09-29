@@ -12,6 +12,8 @@ Widget gameButton({
   return ZoomTapAnimation(
     onTap: onTap,
     child: Container(
+      width: 100.w,
+      padding: EdgeInsets.only(bottom: 10.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.w),
         border: Border.all(
@@ -37,8 +39,6 @@ Widget gameButton({
             ),
             child: Image.asset(
               imagePath,
-              width: 100.w,
-              height: 100.h,
               fit: BoxFit.cover,
             ),
           ),

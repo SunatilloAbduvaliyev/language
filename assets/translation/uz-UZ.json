@@ -47,5 +47,13 @@
   "example_one_title": "Englishcha misolni kiriting",
   "example_two_title": "Uzbekcha misolning ma'nosini kiriting",
   "local_add_example": "Misolni Qo'shing",
-  "add_word_title": "So'zni Qo'shing"
+  "add_word_title": "So'zni Qo'shing",
+  "search": "Qidirish",
+  "manual": "Qo'llanma",
+  "word_game": "So'z O'yni",
+  "manual_word_game":"So'zlarni toping va lug'atingizni mustahkamlang",
+  "is_check_word": "Lug'atlarni Tanlang",
+  "error_word_list": "Ushbu lug'at mavjud emas!",
+  "no_check_word": "Lug'atni Tanlang.",
+  "download_word": "Lug'atni yuklab oling"
 }

@@ -1,9 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english/bloc/user_bloc/user_event.dart';
-import 'package:english/screen/tab_box/chat_bot/chat_bot_screen.dart';
 import 'package:english/screen/tab_box/game/game_screen.dart';
 import 'package:english/screen/tab_box/grammar/grammer_screen.dart';
-import 'package:english/screen/tab_box/quiz/quiz_screen.dart';
 import 'package:english/screen/tab_box/words/words_screen.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
@@ -30,8 +28,6 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
     const GrammarScreen(),
     const WordsScreen(),
     const GameScreen(),
-    const QuizScreen(),
-    const ChatBotScreen(),
   ];
 
   final List<String> explanations = [
@@ -102,16 +98,6 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
               ),
               SvgPicture.asset(
                 AppImages.game,
-                width: 25.w,
-                height: 25.h,
-              ),
-              SvgPicture.asset(
-                AppImages.quiz,
-                width: 25.w,
-                height: 25.h,
-              ),
-              SvgPicture.asset(
-                AppImages.chat,
                 width: 25.w,
                 height: 25.h,
               ),

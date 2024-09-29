@@ -24,8 +24,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Future<void> _insertUser(
       InsertUserEvent event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: FormsStatus.loading));
-    NetworkResponse response =
-        await getIt<UserRepository>().insertUser(userModel: event.insertUserData);
+    NetworkResponse response = await getIt<UserRepository>()
+        .insertUser(userModel: event.insertUserData);
     if (response.errorMessage.isEmpty) {
       emit(
         state.copyWith(
@@ -128,8 +128,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-
-
   Future<void> _updateUser(
       UserUpdateEvent event, Emitter<UserState> emit) async {
     emit(state.copyWith(status: FormsStatus.loading));
@@ -154,7 +152,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Future<void> _updateLikeWord(
       UserLikeWordUpdateEvent event, Emitter<UserState> emit) async {
-    emit(state.copyWith(status: FormsStatus.updateLoading));
+    Set<int> newLoadingIndex = Set.from(state.loadingIndex);
+    newLoadingIndex.add(event.index);
+    emit(
+      state.copyWith(
+        favouriteWordLoading: newLoadingIndex,
+      ),
+    );
     List<WordModel> likeWords = event.userModel.favouriteWords;
     Map<String, String> checkLike = event.userModel.checkLike;
     UserModel updateUser = event.userModel;
@@ -185,11 +189,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     NetworkResponse response =
         await getIt<UserRepository>().userUpdate(userModel: updateUser);
     if (response.errorMessage.isEmpty) {
+      Set<int> newLoadingIndex = Set.from(state.loadingIndex);
+      newLoadingIndex.remove(event.index);
       emit(
         state.copyWith(
           status: FormsStatus.success,
           userData: updateUser,
           favouriteWord: updateUser.favouriteWords,
+          favouriteWordLoading: newLoadingIndex,
         ),
       );
     } else {

@@ -10,6 +10,8 @@ class UserState {
   final List<UserModel> allUserData;
   final Set<int> loadingIndex;
   final List<WordModel> favouriteWord;
+  final Set<int> favouriteWordLoading;
+
 
   UserState({
     required this.favouriteWord,
@@ -18,6 +20,7 @@ class UserState {
     required this.userData,
     required this.allUserData,
     required this.loadingIndex,
+    required this.favouriteWordLoading,
   });
 
   UserState copyWith({
@@ -28,8 +31,10 @@ class UserState {
     bool? isGrammarSuccess,
     Set<int>? loadingIndex,
     List<WordModel>? favouriteWord,
+    Set<int>? favouriteWordLoading,
   }) {
     return UserState(
+      favouriteWordLoading: favouriteWordLoading ?? this.favouriteWordLoading,
       favouriteWord: favouriteWord ?? this.favouriteWord,
       errorMessage: errorMessage ?? this.errorMessage,
       status: status ?? this.status,
@@ -40,6 +45,7 @@ class UserState {
   }
 
   static UserState initialValue() => UserState(
+        favouriteWordLoading: {},
         favouriteWord: [],
         errorMessage: '',
         status: FormsStatus.pure,

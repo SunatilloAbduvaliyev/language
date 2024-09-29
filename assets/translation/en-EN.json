@@ -47,5 +47,14 @@
   "example_one_title": "Enter English example",
   "example_two_title": "Enter Uzbek meaning of the example",
   "local_add_example": "Add Example",
-  "add_word_title": "Add Word"
+  "add_word_title": "Add Word",
+  "search": "Search",
+  "manual": "Manual",
+  "word_game": "Word Game",
+  "manual_word_game": "Find the words and strengthen your vocabulary",
+  "is_check_word": "Select Dictionary",
+  "error_word_list": "This dictionary is not available!",
+  "no_check_word": "Select a dictionary.",
+  "download_word": "Download Dictionary"
+
 }

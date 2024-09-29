@@ -27,31 +27,31 @@ class _WordGameScreenState extends State<WordGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Image.asset(
-              AppImages.wordBackground,
-              width: width,
-              height: MediaQuery.sizeOf(context).height,
-              fit: BoxFit.cover,
-            ),
-            Positioned(
-              top: 20,
-              right: 0,
-              left: 0,
-              child: wordBoard(),
-            ),
-            Positioned(
-              top: 400.h,
-              bottom: 0,
-              left: 20,
-              right: 0,
-              child: BlocBuilder<WordGameCubit, WordGameState>(
-                builder: (BuildContext context, WordGameState state) {
-                  debugPrint(
-                      'word cubit list index _______________________ ${state.activeButton}');
-                  return Wrap(
+      body: Stack(
+        children: [
+          Image.asset(
+            AppImages.wordBackground,
+            width: width,
+            height: MediaQuery.sizeOf(context).height,
+            fit: BoxFit.cover,
+          ),
+          Positioned(
+            top: 20,
+            right: 0,
+            left: 0,
+            child: wordBoard(),
+          ),
+          Positioned(
+            top: 400.h,
+            bottom: 0,
+            left: 20,
+            right: 0,
+            child: BlocBuilder<WordGameCubit, WordGameState>(
+              builder: (BuildContext context, WordGameState state) {
+                debugPrint(
+                    'word cubit list index _______________________ ${state.activeButton}');
+                return SingleChildScrollView(
+                  child: Wrap(
                     children: List.generate(
                       state.wordLetter.length,
                       (int index) => Stack(
@@ -88,47 +88,47 @@ class _WordGameScreenState extends State<WordGameScreen> {
                         ],
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-            Positioned(
-              bottom: 20.h,
-              child: Row(
-                children: [
-                  wordButton(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
                   ),
-                  BlocBuilder<WordGameCubit, WordGameState>(
-                    builder: (BuildContext context, WordGameState state) {
-                      return Visibility(
-                        visible: state.status == FormsStatus.success,
-                        child: wordButton(
-                          title: state.wordIndex>=state.listLength?"finish".tr():"next".tr(),
-                          onTap: () {
-                              if(state.wordIndex>=state.listLength){
-                                  Navigator.pop(context);
-                              }else{
-                                WordModel wordModel =
-                                widget.listWord[state.wordIndex];
-                                context.read<WordGameCubit>().startGame(
-                                  trueAnswer: wordModel.english,
-                                  questionWord: wordModel.translateWord,
-                                  wordIndex: state.wordIndex,
-                                );
-                              }
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            bottom: 20.h,
+            child: Row(
+              children: [
+                wordButton(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                BlocBuilder<WordGameCubit, WordGameState>(
+                  builder: (BuildContext context, WordGameState state) {
+                    return Visibility(
+                      visible: state.status == FormsStatus.success,
+                      child: wordButton(
+                        title: state.wordIndex>=state.listLength?"finish".tr():"next".tr(),
+                        onTap: () {
+                            if(state.wordIndex>=state.listLength){
+                                Navigator.pop(context);
+                            }else{
+                              WordModel wordModel =
+                              widget.listWord[state.wordIndex];
+                              context.read<WordGameCubit>().startGame(
+                                trueAnswer: wordModel.english,
+                                questionWord: wordModel.translateWord,
+                                wordIndex: state.wordIndex,
+                              );
+                            }
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:english/data/model/word/word_model.dart';
 import 'package:english/screen/add_word/add_word_screen.dart';
 import 'package:english/screen/auth/login/login_screen.dart';
 import 'package:english/screen/auth/register/register_screen.dart';
+import 'package:english/screen/favourite_word_screen/favourite_word_screen.dart';
 import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/learning_word_screen/learning_word_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
@@ -45,6 +46,9 @@ class AppRoute {
       case RouteName.wordStartedScreen:
         return navigate(const WordStartedGameScreen());
 
+      case RouteName.favouriteWordScreen:
+        return navigate(const FavouriteWordScreen());
+
       case RouteName.wordGameScreen:
         return navigate(
           WordGameScreen(
@@ -80,4 +84,5 @@ class RouteName {
   static const String learningWord = '/learning_word';
   static const String wordStartedScreen = '/word_started';
   static const String wordGameScreen = '/word_game';
+  static const String favouriteWordScreen = '/favourite_word';
 }

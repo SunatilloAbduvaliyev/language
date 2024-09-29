@@ -17,7 +17,7 @@ class _ChangeWordItemState extends State<ChangeWordItem>
   @override
   void initState() {
     _animatedController = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 700),
       vsync: this,
     );
     super.initState();
@@ -44,6 +44,7 @@ class _ChangeWordItemState extends State<ChangeWordItem>
         }
       },
       child:  AnimatedIcon(
+        size: 30,
         icon: AnimatedIcons.view_list,
         progress: _animatedController,
       ),

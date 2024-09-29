@@ -19,6 +19,7 @@ class _CategoryItemState extends State<CategoryItem> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: AppColors.cF3F3F3,
       child: CupertinoSlidingSegmentedControl<int>(
         children: {
           0: Text(
@@ -33,12 +34,6 @@ class _CategoryItemState extends State<CategoryItem> {
                 color: index == 1 ? Colors.white:AppColors.c000000
             ),
           ),
-          2: Text(
-            'favourite'.tr(),
-            style: AppTextStyle.bold.copyWith(
-                color: index == 2 ? Colors.white:AppColors.c000000
-            ),
-          ),
         },
         thumbColor: Colors.blueAccent,
         groupValue: index,
@@ -49,6 +44,7 @@ class _CategoryItemState extends State<CategoryItem> {
               setState(() {});
             }
           });
+          debugPrint("change category index _______________________________________ $index");
           context.read<WordCategoryCubit>().changeWord(index);
         },
       ),
