@@ -11,6 +11,7 @@ class UserState {
   final Set<int> loadingIndex;
   final List<WordModel> favouriteWord;
   final Set<int> favouriteWordLoading;
+  final Set<int> wordDeleteLoading;
 
 
   UserState({
@@ -21,6 +22,7 @@ class UserState {
     required this.allUserData,
     required this.loadingIndex,
     required this.favouriteWordLoading,
+    required this.wordDeleteLoading,
   });
 
   UserState copyWith({
@@ -32,8 +34,10 @@ class UserState {
     Set<int>? loadingIndex,
     List<WordModel>? favouriteWord,
     Set<int>? favouriteWordLoading,
+    Set<int>? wordDeleteLoading,
   }) {
     return UserState(
+      wordDeleteLoading: wordDeleteLoading ?? this.wordDeleteLoading,
       favouriteWordLoading: favouriteWordLoading ?? this.favouriteWordLoading,
       favouriteWord: favouriteWord ?? this.favouriteWord,
       errorMessage: errorMessage ?? this.errorMessage,
@@ -51,6 +55,7 @@ class UserState {
         status: FormsStatus.pure,
         userData: UserModel.initialValue(),
         allUserData: [],
-        loadingIndex: {}
+        loadingIndex: {},
+        wordDeleteLoading: {},
       );
 }

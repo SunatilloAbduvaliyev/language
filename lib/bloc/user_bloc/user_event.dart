@@ -83,7 +83,26 @@ class UserUpdateEvent extends UserEvent {
 
 class UserInitialEvent extends UserEvent {}
 
-class UserLikeWordUpdateEvent extends UserEvent  with EquatableMixin{
+class UserWordDeleteEvent extends UserEvent with EquatableMixin {
+  final int index;
+  final UserModel userData;
+  final bool isFavourite;
+
+  UserWordDeleteEvent({
+    required this.index,
+    required this.userData,
+    this.isFavourite = false,
+  });
+
+  @override
+  List<Object?> get props => [
+        index,
+        userData,
+        isFavourite,
+      ];
+}
+
+class UserLikeWordUpdateEvent extends UserEvent with EquatableMixin {
   final bool isTrue;
   final WordModel wordModel;
   final UserModel userModel;
@@ -98,9 +117,9 @@ class UserLikeWordUpdateEvent extends UserEvent  with EquatableMixin{
 
   @override
   List<Object?> get props => [
-    isTrue,
-    wordModel,
-    userModel,
-    index,
-  ];
+        isTrue,
+        wordModel,
+        userModel,
+        index,
+      ];
 }

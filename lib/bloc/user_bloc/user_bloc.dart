@@ -19,6 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserUpdateEvent>(_updateUser);
     on<UserInitialEvent>(_initialState);
     on<UserLikeWordUpdateEvent>(_updateLikeWord);
+    on<UserWordDeleteEvent>(_deleteWord);
   }
 
   Future<void> _insertUser(
@@ -108,14 +109,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         "user uid like update ____________________________ ${userModel.uid}");
     NetworkResponse response =
         await getIt<UserRepository>().likeUpdate(userModel: userModel);
+    Set<int> loadingIndex = Set.from(state.loadingIndex);
+    loadingIndex.remove(event.index);
     if (response.errorMessage.isEmpty) {
-      Set<int> newLoadingIndex = Set.from(state.loadingIndex);
-      newLoadingIndex.remove(event.index);
       emit(
         state.copyWith(
           status: FormsStatus.success,
           userData: response.data,
-          loadingIndex: newLoadingIndex,
+          loadingIndex: loadingIndex,
         ),
       );
     } else {
@@ -123,6 +124,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         state.copyWith(
           status: FormsStatus.error,
           errorMessage: response.errorMessage,
+          loadingIndex: loadingIndex,
         ),
       );
     }
@@ -152,7 +154,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Future<void> _updateLikeWord(
       UserLikeWordUpdateEvent event, Emitter<UserState> emit) async {
-    Set<int> newLoadingIndex = Set.from(state.loadingIndex);
+    Set<int> newLoadingIndex = Set.from(state.favouriteWordLoading);
     newLoadingIndex.add(event.index);
     emit(
       state.copyWith(
@@ -188,20 +190,75 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
     NetworkResponse response =
         await getIt<UserRepository>().userUpdate(userModel: updateUser);
+    Set<int> loadingIndex = Set.from(state.favouriteWordLoading);
+    loadingIndex.remove(event.index);
     if (response.errorMessage.isEmpty) {
-      Set<int> newLoadingIndex = Set.from(state.loadingIndex);
-      newLoadingIndex.remove(event.index);
       emit(
         state.copyWith(
           status: FormsStatus.success,
           userData: updateUser,
           favouriteWord: updateUser.favouriteWords,
-          favouriteWordLoading: newLoadingIndex,
+          favouriteWordLoading: loadingIndex,
         ),
       );
     } else {
       emit(
         state.copyWith(
+          status: FormsStatus.error,
+          errorMessage: response.errorMessage,
+          favouriteWordLoading: loadingIndex,
+        ),
+      );
+    }
+  }
+
+  Future<void> _deleteWord(
+      UserWordDeleteEvent event, Emitter<UserState> emit) async {
+    Set<int> newLoadingIndex = Set.from(state.wordDeleteLoading);
+    newLoadingIndex.add(event.index);
+    emit(
+      state.copyWith(
+        wordDeleteLoading: newLoadingIndex,
+      ),
+    );
+    UserModel userModel = event.userData;
+    List<WordModel> words = [];
+    WordModel wordModel = WordModel.initialValue();
+    Map<String, String> checkLike = userModel.checkLike;
+    if (event.isFavourite) {
+      words = userModel.favouriteWords;
+      wordModel = userModel.favouriteWords[event.index];
+      words.removeAt(event.index);
+      userModel = userModel.copyWith(
+        favouriteWords: words,
+      );
+    } else {
+      words = userModel.words;
+      wordModel = userModel.words[event.index];
+      words.removeAt(event.index);
+      userModel = userModel.copyWith(
+        words: words,
+      );
+    }
+    checkLike.remove(wordModel.english);
+    userModel = userModel.copyWith(
+      checkLike: checkLike,
+    );
+    NetworkResponse response =
+        await getIt<UserRepository>().userUpdate(userModel: userModel);
+    Set<int> loadingIndex = Set.from(state.wordDeleteLoading);
+    loadingIndex.remove(event.index);
+    if (response.errorMessage.isEmpty) {
+      emit(
+        state.copyWith(
+          wordDeleteLoading: loadingIndex,
+          userData: userModel,
+        ),
+      );
+    }else{
+      emit(
+        state.copyWith(
+          wordDeleteLoading: loadingIndex,
           status: FormsStatus.error,
           errorMessage: response.errorMessage,
         ),

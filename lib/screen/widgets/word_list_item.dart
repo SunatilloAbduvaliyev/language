@@ -16,9 +16,11 @@ class WordListItem extends StatefulWidget {
   const WordListItem({
     super.key,
     required this.listWords,
+    this.isFavourite = false,
   });
 
   final List<WordModel> listWords;
+  final bool isFavourite;
 
   @override
   State<WordListItem> createState() => _WordListItemState();
@@ -68,43 +70,73 @@ class _WordListItemState extends State<WordListItem> {
                   ),
                   BlocBuilder<UserBloc, UserState>(
                     builder: (BuildContext context, UserState state) {
-                      return IconButton(
-                        onPressed: () {
-                          debugPrint(
-                              "index and english: ______________________________ index $generateIndex , english: ${widget.listWords[generateIndex].english}");
-                          if (state.userData.checkLike.containsKey(
-                              widget.listWords[generateIndex].english)) {
-                            context.read<UserBloc>().add(
-                                  UserLikeWordUpdateEvent(
-                                    index: generateIndex,
-                                    isTrue: true,
-                                    wordModel: widget.listWords[generateIndex],
-                                    userModel: state.userData,
+                      return Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              debugPrint(
+                                  "index and english: ______________________________ index $generateIndex , english: ${widget.listWords[generateIndex].english}");
+                              if (state.userData.checkLike.containsKey(
+                                  widget.listWords[generateIndex].english)) {
+                                context.read<UserBloc>().add(
+                                      UserLikeWordUpdateEvent(
+                                        index: generateIndex,
+                                        isTrue: true,
+                                        wordModel:
+                                            widget.listWords[generateIndex],
+                                        userModel: state.userData,
+                                      ),
+                                    );
+                              } else {
+                                context.read<UserBloc>().add(
+                                      UserLikeWordUpdateEvent(
+                                        index: generateIndex,
+                                        wordModel:
+                                            widget.listWords[generateIndex],
+                                        userModel: state.userData,
+                                      ),
+                                    );
+                              }
+                            },
+                            icon: state.favouriteWordLoading
+                                    .contains(generateIndex)
+                                ? const CupertinoActivityIndicator(
+                                    color: AppColors.c000000,
+                                  )
+                                : Icon(
+                                    state.userData.checkLike.containsKey(
+                                      widget.listWords[generateIndex].english,
+                                    )
+                                        ? Icons.star
+                                        : Icons.star_border,
+                                    color: Colors.yellow,
+                                    size: 30,
                                   ),
-                                );
-                          } else {
-                            context.read<UserBloc>().add(
-                                  UserLikeWordUpdateEvent(
-                                    index: generateIndex,
-                                    wordModel: widget.listWords[generateIndex],
-                                    userModel: state.userData,
-                                  ),
-                                );
-                          }
-                        },
-                        icon: state.favouriteWordLoading.contains(generateIndex)
-                            ? const CupertinoActivityIndicator(
-                                color: AppColors.c000000,
-                              )
-                            : Icon(
-                                state.userData.checkLike.containsKey(
-                                  widget.listWords[generateIndex].english,
-                                )
-                                    ? Icons.star
-                                    : Icons.star_border,
-                                color: Colors.yellow,
-                                size: 30,
-                              ),
+                          ),
+                          10.boxW(),
+                          Visibility(
+                            visible: widget.listWords[generateIndex].isLike,
+                            child: IconButton(
+                              onPressed: () {
+                                context.read<UserBloc>().add(
+                                      UserWordDeleteEvent(
+                                        index: generateIndex,
+                                        userData: state.userData,
+                                        isFavourite: widget.isFavourite,
+                                      ),
+                                    );
+                              },
+                              icon: state.wordDeleteLoading
+                                      .contains(generateIndex)
+                                  ? const CupertinoActivityIndicator()
+                                  : const Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                      size: 24,
+                                    ),
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),

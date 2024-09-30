@@ -86,7 +86,7 @@ class WordModel {
     russian: '',
     phonetics: '',
     exampleEn: [],
-    isLike: false,
+    isLike: true,
     wordConcept: '',
   );
 }
