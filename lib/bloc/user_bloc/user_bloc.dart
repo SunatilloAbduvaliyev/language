@@ -223,27 +223,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     );
     UserModel userModel = event.userData;
     List<WordModel> words = [];
-    WordModel wordModel = WordModel.initialValue();
     Map<String, String> checkLike = userModel.checkLike;
     if (event.isFavourite) {
       words = userModel.favouriteWords;
-      wordModel = userModel.favouriteWords[event.index];
+      checkLike.remove(userModel.favouriteWords[event.index].english);
       words.removeAt(event.index);
       userModel = userModel.copyWith(
         favouriteWords: words,
+        checkLike: checkLike,
       );
     } else {
       words = userModel.words;
-      wordModel = userModel.words[event.index];
       words.removeAt(event.index);
       userModel = userModel.copyWith(
         words: words,
       );
     }
-    checkLike.remove(wordModel.english);
-    userModel = userModel.copyWith(
-      checkLike: checkLike,
-    );
+
     NetworkResponse response =
         await getIt<UserRepository>().userUpdate(userModel: userModel);
     Set<int> loadingIndex = Set.from(state.wordDeleteLoading);
