@@ -11,6 +11,7 @@ class AppImages{
   static const String game = 'assets/icons/game.svg';
   //png
   static const String errorImage = 'assets/images/error_image.png';
+  static const String quizImage = 'assets/images/quiz.png';
   static const String word = 'assets/images/word_game_images/word.png';
   static const String wordBackground = 'assets/images/word_game_images/word_background.png';
   static const String wordBoard = 'assets/images/word_game_images/word_board.png';

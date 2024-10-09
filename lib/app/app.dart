@@ -3,16 +3,17 @@ import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/cubit/auth_cubit/auth_cubit.dart';
 import 'package:english/cubit/change_item_cubit/change_item_cubit.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
+import 'package:english/cubit/quiz_cubit/quiz_cubit.dart';
 import 'package:english/cubit/tab_box_cubit/tab_box_cubit.dart';
 import 'package:english/cubit/word_category_cubit/word_category_cubit.dart';
 import 'package:english/cubit/word_cubit/word_cubit.dart';
-import 'package:english/cubit/word_game/word_game_cubit.dart';
 import 'package:english/screen/route.dart';
 import 'package:english/utils/color/app_colors.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubit/word_game_cubit/word_game_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_) => WordCubit()..fetchWord()),
         BlocProvider(create: (_)=>ChangeItemCubit()),
         BlocProvider(create: (_)=>WordGameCubit()),
+        BlocProvider(create: (_)=>QuizCubit()),
       ],
       child: const MyApp(),
     );

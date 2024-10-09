@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/cubit/word_cubit/word_cubit.dart';
-import 'package:english/cubit/word_game/word_game_cubit.dart';
 import 'package:english/data/model/forms_status.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:english/screen/route.dart';
@@ -16,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/user_bloc/user_state.dart';
 import '../../../cubit/word_cubit/word_state.dart';
+import '../../../cubit/word_game_cubit/word_game_cubit.dart';
 import '../../../utils/images/app_images.dart';
 
 class WordStartedGameScreen extends StatefulWidget {

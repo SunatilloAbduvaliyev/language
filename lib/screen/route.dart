@@ -5,6 +5,7 @@ import 'package:english/screen/auth/register/register_screen.dart';
 import 'package:english/screen/favourite_word_screen/favourite_word_screen.dart';
 import 'package:english/screen/grammar_detail/grammar_detail_screen.dart';
 import 'package:english/screen/learning_word_screen/learning_word_screen.dart';
+import 'package:english/screen/quiz_game/quiz_game_screen.dart';
 import 'package:english/screen/tab_box/tab_box_screen.dart';
 import 'package:english/screen/word_detail/word_detail_screen.dart';
 import 'package:english/screen/word_game/word_game_screen/word_game_screen.dart';
@@ -56,6 +57,9 @@ class AppRoute {
           ),
         );
 
+      case RouteName.quizGame:
+        return navigate(const QuizGameScreen());
+
       default:
         return navigate(
           Scaffold(
@@ -85,4 +89,5 @@ class RouteName {
   static const String wordStartedScreen = '/word_started';
   static const String wordGameScreen = '/word_game';
   static const String favouriteWordScreen = '/favourite_word';
+  static const String quizGame = '/quiz_game';
 }

@@ -1,3 +1,5 @@
+import 'package:english/data/model/user/user_quiz/user_quiz.dart';
+
 import '../word/word_model.dart';
 
 class UserModel {
@@ -10,8 +12,10 @@ class UserModel {
   final String email;
   final Map<String, String> checkLike;
   final int learningEnglishIndex;
+  final List<UserQuiz> userQuiz;
 
   UserModel({
+    required this.userQuiz,
     required this.uid,
     required this.firstName,
     required this.lastName,
@@ -25,47 +29,55 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-        learningEnglishIndex: json['learning_english_index'] as int? ?? 0,
-        uid: json['uid'] as String? ?? '',
-        firstName: json['first_name'] as String? ?? '',
-        lastName: json['last_name'] as String? ?? '',
-    words: (json['words'] as List?)
-        ?.map((element) => WordModel.fromJson(element))
-        .toList() ??
-        [],
-      favouriteWords: (json['favourite_words'] as List?)
-          ?.map((element) => WordModel.fromJson(element))
-          .toList() ??
+      userQuiz: (json['user_quiz'] as List?)
+              ?.map((e) => UserQuiz.fromJson(e))
+              .toList() ??
           [],
-    fcmToken: json['fcm_token'] as String? ?? '',
+      learningEnglishIndex: json['learning_english_index'] as int? ?? 0,
+      uid: json['uid'] as String? ?? '',
+      firstName: json['first_name'] as String? ?? '',
+      lastName: json['last_name'] as String? ?? '',
+      words: (json['words'] as List?)
+              ?.map((element) => WordModel.fromJson(element))
+              .toList() ??
+          [],
+      favouriteWords: (json['favourite_words'] as List?)
+              ?.map((element) => WordModel.fromJson(element))
+              .toList() ??
+          [],
+      fcmToken: json['fcm_token'] as String? ?? '',
       email: json['email'] as String? ?? '',
-      checkLike: (json['check_like'] as Map<String, dynamic>?)?.map(
-              (key, value) => MapEntry(key, value as String)) ?? {},
+      checkLike: (json['check_like'] as Map<String, dynamic>?)
+              ?.map((key, value) => MapEntry(key, value as String)) ??
+          {},
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         'uid': uid,
         'first_name': firstName,
         'last_name': lastName,
         'words': words.map((element) => element.toJson()).toList(),
-        'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
+        'favourite_words':
+            favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
-        'email':email,
-        'check_like':checkLike,
-        'learning_english_index':0,
+        'email': email,
+        'check_like': checkLike,
+        'learning_english_index': 0,
+        'user_quiz': userQuiz.map((e) => e.toJson()).toList(),
       };
-  Map<String, dynamic> toUpdateJson() =>
-      {
+
+  Map<String, dynamic> toUpdateJson() => {
         'first_name': firstName,
         'last_name': lastName,
         'words': words.map((element) => element.toJson()).toList(),
-        'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
+        'favourite_words':
+            favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
-        'email':email,
-        'check_like':checkLike,
-        'learning_english_index':0,
+        'email': email,
+        'check_like': checkLike,
+        'learning_english_index': 0,
+        'user_quiz': userQuiz.map((e) => e.toJson()).toList(),
       };
 
   UserModel copyWith({
@@ -78,6 +90,7 @@ class UserModel {
     String? email,
     Map<String, String>? checkLike,
     int? learningEnglishIndex,
+    List<UserQuiz>? userQuiz,
   }) {
     return UserModel(
       learningEnglishIndex: learningEnglishIndex ?? this.learningEnglishIndex,
@@ -89,11 +102,11 @@ class UserModel {
       email: email ?? this.email,
       favouriteWords: favouriteWords ?? this.favouriteWords,
       checkLike: checkLike ?? this.checkLike,
+      userQuiz: userQuiz ?? this.userQuiz,
     );
   }
 
-  static UserModel initialValue() =>
-      UserModel(
+  static UserModel initialValue() => UserModel(
         learningEnglishIndex: 0,
         uid: '',
         firstName: '',
@@ -102,6 +115,7 @@ class UserModel {
         fcmToken: '',
         email: '',
         favouriteWords: [],
-        checkLike: {"learning_english_word":'kkkkk'},
+        checkLike: {"learning_english_word": 'kkkkk'},
+        userQuiz: [],
       );
 }

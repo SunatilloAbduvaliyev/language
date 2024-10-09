@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:english/cubit/word_game/word_game_state.dart';
+import 'package:english/cubit/word_game_cubit/word_game_state.dart';
 import 'package:english/data/model/forms_status.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

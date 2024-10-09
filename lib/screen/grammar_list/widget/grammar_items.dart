@@ -1,12 +1,14 @@
+import 'package:english/bloc/user_bloc/user_bloc.dart';
 import 'package:english/data/model/basic_grammar/basic_grammar_model.dart';
 import 'package:english/data/model/basic_grammar/grammar/grammar_model.dart';
 import 'package:english/data/model/hero_tag.dart';
+import 'package:english/screen/route.dart';
 import 'package:english/screen/widgets/rating_lesson.dart';
 import 'package:english/utils/extension/extension.dart';
 import 'package:english/utils/images/app_images.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../widgets/hero_widget.dart';
 
 class GrammarItems extends StatelessWidget {
@@ -21,7 +23,7 @@ class GrammarItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListView.separated(
-      itemCount: basicGrammarModel.grammarLength,
+      itemCount: basicGrammarModel.grammars.length,
       padding: const EdgeInsets.all(16),
       separatorBuilder: (context, index) => const Divider(),
       itemBuilder: (context, index) {
@@ -39,9 +41,20 @@ class GrammarItems extends StatelessWidget {
             ),
             child: child,
           ),
-          child: buildReview(
-            grammarModel: grammarModel,
-            index: index,
+          child: Column(
+            children: [
+              if (index == 0)
+                ratingLesson(
+                  basicGrammarModel: basicGrammarModel,
+                  color: Colors.white,
+                ),
+              10.boxH(),
+              buildReview(
+                grammarModel: grammarModel,
+                index: index,
+                context: context,
+              ),
+            ],
           ),
         );
       });
@@ -49,56 +62,57 @@ class GrammarItems extends StatelessWidget {
   Widget buildReview({
     required GrammarModel grammarModel,
     required int index,
+    required BuildContext context,
   }) =>
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (index == 0)
-              ratingLesson(
-                basicGrammarModel: basicGrammarModel,
-                color: Colors.white,
-              ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                HeroWidget(
-                  tag: HeroTag.avatar(AppImages.errorImage, index),
-                  child: const CircleAvatar(
-                    radius: 16,
-                    backgroundColor: Colors.black12,
-                    backgroundImage: AssetImage(
-                      AppImages.errorImage,
+      GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            RouteName.grammarDetail,
+            arguments: basicGrammarModel.grammars[index],
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  HeroWidget(
+                    tag: HeroTag.avatar(AppImages.errorImage, index),
+                    child: const CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.black12,
+                      backgroundImage: AssetImage(
+                        AppImages.errorImage,
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  grammarModel.subjectName,
-                  style: AppTextStyle.bold.copyWith(
-                    color: Colors.white,
+                  Text(
+                    grammarModel.subjectName,
+                    style: AppTextStyle.bold.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Text(
-                  "${grammarModel.subjectName}two",
-                  style: AppTextStyle.bold.copyWith(color: Colors.white),
-                ),
-                const Icon(
-                  Icons.lock,
-                  size: 24,
-                  color: Colors.white,
-                )
-              ],
-            ),
-            8.boxH(),
-            Text(
-              "${grammarModel.subjectName}three",
-              style: AppTextStyle.bold.copyWith(
-                color: Colors.white,
+                  Icon(
+                    context
+                                .read<UserBloc>()
+                                .state
+                                .userData
+                                .learningEnglishIndex >=
+                            index
+                        ? Icons.lock_open
+                        : Icons.lock,
+                    size: 24,
+                    color: Colors.white,
+                  )
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }
