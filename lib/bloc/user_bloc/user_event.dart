@@ -1,8 +1,8 @@
 import 'package:english/data/model/user/user_model.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:equatable/equatable.dart';
-import '../../data/model/grammar/grammar_model.dart';
-import '../../data/model/like_dislike/like_dislike_model.dart';
+
+import '../../data/model/basic_grammar/grammar/grammar_model.dart';
 
 abstract class UserEvent {}
 
@@ -37,27 +37,6 @@ class FetchUserEvent extends UserEvent with EquatableMixin {
 
 class FetchAllUserEvent extends UserEvent {}
 
-class UpdateLikeUserEvent extends UserEvent with EquatableMixin {
-  final UserModel userModel;
-  final List<LikeDislikeModel> like;
-  final int index;
-  final LikeDislikeModel likeDislikeModel;
-
-  UpdateLikeUserEvent({
-    required this.userModel,
-    required this.like,
-    required this.index,
-    required this.likeDislikeModel,
-  });
-
-  @override
-  List<Object?> get props => [
-        userModel,
-        like,
-        index,
-        likeDislikeModel,
-      ];
-}
 
 class LoginInsertLikeUserEvent extends UserEvent with EquatableMixin {
   final String userUid;

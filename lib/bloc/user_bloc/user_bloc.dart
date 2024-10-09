@@ -6,16 +6,13 @@ import 'package:english/data/model/user/user_model.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:english/data/repository/user/user_repository.dart';
 import 'package:english/services/services_locator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/model/like_dislike/like_dislike_model.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState.initialValue()) {
     on<InsertUserEvent>(_insertUser);
     on<FetchAllUserEvent>(_fetchAllUser);
     on<FetchUserEvent>(_fetUser);
-    on<UpdateLikeUserEvent>(_likeUpdate);
     on<UserUpdateEvent>(_updateUser);
     on<UserInitialEvent>(_initialState);
     on<UserLikeWordUpdateEvent>(_updateLikeWord);
@@ -87,48 +84,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _likeUpdate(
-      UpdateLikeUserEvent event, Emitter<UserState> emit) async {
-    Set<int> newLoadingIndex = Set.from(state.loadingIndex);
-    newLoadingIndex.add(event.index);
-    emit(
-      state.copyWith(
-        status: FormsStatus.updateLoading,
-        loadingIndex: newLoadingIndex,
-      ),
-    );
-    UserModel userModel = event.userModel;
-    List<LikeDislikeModel> likes = event.like;
-    likes.removeAt(event.index);
-    likes.insert(event.index, event.likeDislikeModel);
-    userModel = userModel.copyWith(
-      likes: likes,
-      uid: userModel.uid,
-    );
-    debugPrint(
-        "user uid like update ____________________________ ${userModel.uid}");
-    NetworkResponse response =
-        await getIt<UserRepository>().likeUpdate(userModel: userModel);
-    Set<int> loadingIndex = Set.from(state.loadingIndex);
-    loadingIndex.remove(event.index);
-    if (response.errorMessage.isEmpty) {
-      emit(
-        state.copyWith(
-          status: FormsStatus.success,
-          userData: response.data,
-          loadingIndex: loadingIndex,
-        ),
-      );
-    } else {
-      emit(
-        state.copyWith(
-          status: FormsStatus.error,
-          errorMessage: response.errorMessage,
-          loadingIndex: loadingIndex,
-        ),
-      );
-    }
-  }
+
 
   Future<void> _updateUser(
       UserUpdateEvent event, Emitter<UserState> emit) async {

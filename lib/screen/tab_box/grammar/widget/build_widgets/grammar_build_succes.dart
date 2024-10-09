@@ -1,21 +1,17 @@
-import 'package:english/utils/extension/extension.dart';
+import 'package:english/data/model/basic_grammar/basic_grammar_model.dart';
+import 'package:english/screen/tab_box/grammar/widget/basic_grammar_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../data/model/grammar/grammar_model.dart';
-import '../grammar_item.dart';
-
-Widget grammarBuildSuccess(List<GrammarModel> grammarList) {
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 30.h),
-    child: ListView.builder(
-      itemCount: grammarList.length,
+Widget grammarBuildSuccess(List<BasicGrammarModel> basicGrammars) {
+  PageController pageController = PageController(viewportFraction: 0.9);
+  return Expanded(
+    child: PageView.builder(
+      controller: pageController,
+      itemCount: basicGrammars.length,
       itemBuilder: (BuildContext context, int index) {
-        return grammarItem(
-          grammarModel: grammarList[index],
-          index: index,
-          context: context,
-        );
+        return BasicGrammarItem(basicGrammarModel: basicGrammars[index]); // Expanded ni olib tashlash
       },
     ),
   );
 }
+

@@ -2,20 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../utils/constants/constants.dart';
-import '../../model/main_like/main_like_model.dart';
 import '../../model/network_response.dart';
 import '../../model/user/user_model.dart';
 
 class UserRepository {
   Future<NetworkResponse> insertUser({required UserModel userModel}) async {
     try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
-          .collection('like_dislike')
-          .doc('Oxh6VznzNwRT6XecYPCQ').get();
-      MainLikeModel  mainLikeModel = MainLikeModel.fromJson(documentSnapshot.data() as Map<String, dynamic>);
-      userModel = userModel.copyWith(
-        likes: mainLikeModel.likes,
-      );
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         // User ma'lumotlarini UID bilan saqlash

@@ -1,4 +1,3 @@
-import '../like_dislike/like_dislike_model.dart';
 import '../word/word_model.dart';
 
 class UserModel {
@@ -8,9 +7,9 @@ class UserModel {
   final List<WordModel> words;
   final List<WordModel> favouriteWords;
   final String fcmToken;
-  final List<LikeDislikeModel> likes;
   final String email;
   final Map<String, String> checkLike;
+  final int learningEnglishIndex;
 
   UserModel({
     required this.uid,
@@ -18,14 +17,15 @@ class UserModel {
     required this.lastName,
     required this.words,
     required this.fcmToken,
-    required this.likes,
     required this.email,
     required this.favouriteWords,
     required this.checkLike,
+    required this.learningEnglishIndex,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
+        learningEnglishIndex: json['learning_english_index'] as int? ?? 0,
         uid: json['uid'] as String? ?? '',
         firstName: json['first_name'] as String? ?? '',
         lastName: json['last_name'] as String? ?? '',
@@ -38,7 +38,6 @@ class UserModel {
           .toList() ??
           [],
     fcmToken: json['fcm_token'] as String? ?? '',
-    likes: (json['likes'] as List?)?.map((e)=>LikeDislikeModel.fromJson(e)).toList() ?? [],
       email: json['email'] as String? ?? '',
       checkLike: (json['check_like'] as Map<String, dynamic>?)?.map(
               (key, value) => MapEntry(key, value as String)) ?? {},
@@ -53,9 +52,9 @@ class UserModel {
         'words': words.map((element) => element.toJson()).toList(),
         'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
-        'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
         'check_like':checkLike,
+        'learning_english_index':0,
       };
   Map<String, dynamic> toUpdateJson() =>
       {
@@ -64,9 +63,9 @@ class UserModel {
         'words': words.map((element) => element.toJson()).toList(),
         'favourite_words':favouriteWords.map((element) => element.toJson()).toList(),
         'fcm_token': fcmToken,
-        'likes':likes.map((element) => element.toJson()).toList(),
         'email':email,
         'check_like':checkLike,
+        'learning_english_index':0,
       };
 
   UserModel copyWith({
@@ -76,17 +75,17 @@ class UserModel {
     List<WordModel>? words,
     List<WordModel>? favouriteWords,
     String? fcmToken,
-    List<LikeDislikeModel>? likes,
     String? email,
     Map<String, String>? checkLike,
+    int? learningEnglishIndex,
   }) {
     return UserModel(
+      learningEnglishIndex: learningEnglishIndex ?? this.learningEnglishIndex,
       uid: uid ?? this.uid,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       words: words ?? this.words,
       fcmToken: fcmToken ?? this.fcmToken,
-      likes: likes ?? this.likes,
       email: email ?? this.email,
       favouriteWords: favouriteWords ?? this.favouriteWords,
       checkLike: checkLike ?? this.checkLike,
@@ -95,12 +94,12 @@ class UserModel {
 
   static UserModel initialValue() =>
       UserModel(
+        learningEnglishIndex: 0,
         uid: '',
         firstName: '',
         lastName: '',
         words: [],
         fcmToken: '',
-        likes: [],
         email: '',
         favouriteWords: [],
         checkLike: {"learning_english_word":'kkkkk'},

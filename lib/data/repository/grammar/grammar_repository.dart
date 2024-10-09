@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:english/data/model/basic_grammar/basic_grammar_model.dart';
 import '../../../utils/constants/constants.dart';
-import '../../model/grammar/grammar_model.dart';
 import '../../model/network_response.dart';
 
 class GrammarRepository {
@@ -10,10 +10,10 @@ class GrammarRepository {
           .collection(AppConstants.grammarTableName)
           .get();
 
-      List<GrammarModel> grammarData = snapshot.docs
-          .map((doc) => GrammarModel.fromJson(doc.data() as Map<String, dynamic>))
+      List<BasicGrammarModel> grammarData = snapshot.docs
+          .map((doc) => BasicGrammarModel.fromJson(doc.data() as Map<String, dynamic>))
           .toList();
-      grammarData.sort((a,b)=>a.themeId.compareTo(b.themeId));
+      grammarData.sort((a,b)=>a.sortId.compareTo(b.sortId));
       return NetworkResponse(
         data: grammarData,
       );
@@ -24,19 +24,4 @@ class GrammarRepository {
     }
   }
 
-  Future<NetworkResponse> updateGrammar({
-    required GrammarModel grammarModel,
-  }) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection(AppConstants.grammarTableName)
-          .doc(grammarModel.docId)
-          .update(
-            grammarModel.toUpdateJson(),
-          );
-      return NetworkResponse(data: 'success');
-    } catch (error) {
-      return NetworkResponse(errorMessage: error.toString());
-    }
-  }
 }

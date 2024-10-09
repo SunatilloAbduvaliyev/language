@@ -1,4 +1,3 @@
-import 'package:english/data/model/grammar/grammar_model.dart';
 import 'package:english/data/model/word/word_model.dart';
 import 'package:english/screen/add_word/add_word_screen.dart';
 import 'package:english/screen/auth/login/login_screen.dart';
@@ -13,6 +12,7 @@ import 'package:english/screen/word_game/word_started_screen/word_started_screen
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../data/model/basic_grammar/grammar/grammar_model.dart';
 
 class AppRoute {
   static Route generateRoute(RouteSettings settings) {

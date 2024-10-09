@@ -1,10 +1,9 @@
+import 'package:english/data/model/basic_grammar/basic_grammar_model.dart';
 import 'package:english/data/model/forms_status.dart';
-
-import '../../data/model/grammar/grammar_model.dart';
 
 class GrammarState {
   final String errorMessage;
-  final List<GrammarModel> grammarData;
+  final List<BasicGrammarModel> grammarData;
   final FormsStatus status;
 
   GrammarState({
@@ -15,7 +14,7 @@ class GrammarState {
 
   GrammarState copyWith({
     String? errorMessage,
-    List<GrammarModel>? grammarData,
+    List<BasicGrammarModel>? grammarData,
     FormsStatus? status,
   }) =>
       GrammarState(

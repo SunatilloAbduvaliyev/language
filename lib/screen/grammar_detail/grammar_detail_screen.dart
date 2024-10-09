@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-
-import '../../data/model/grammar/grammar_model.dart';
+import '../../data/model/basic_grammar/grammar/grammar_model.dart';
 import '../../utils/images/app_images.dart';
 import '../../utils/style/app_text_style.dart';
 
