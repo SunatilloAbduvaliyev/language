@@ -62,6 +62,11 @@ class _WordListItemState extends State<WordListItem> {
                         ),
                         5.boxH(),
                         Text(
+                          "[ ${widget.listWords[generateIndex].phonetics} ]",
+                          style: AppTextStyle.medium,
+                        ),
+                        5.boxH(),
+                        Text(
                           widget.listWords[generateIndex].translateWord,
                           style: AppTextStyle.bold,
                         ),

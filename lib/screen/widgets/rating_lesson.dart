@@ -46,12 +46,20 @@ Widget ratingLesson({
                 children: [
                   Text(
                     "${"all_lesson".tr()}: ${basicGrammarModel.grammars.length.toString()}",
-                    style: AppTextStyle.bold.copyWith(color: color),
+                    style: AppTextStyle.bold.copyWith(
+                      color: color,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   10.boxH(),
                   Text(
                     "${"see_lesson".tr()}: ${state.userData.learningEnglishIndex.toString()}",
-                    style: AppTextStyle.bold.copyWith(color: color),
+                    style: AppTextStyle.bold.copyWith(
+                      color: color,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ],
               )

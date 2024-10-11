@@ -57,8 +57,7 @@ class AppRoute {
           ),
         );
 
-      case RouteName.quizGame:
-        return navigate(const QuizGameScreen());
+
 
       default:
         return navigate(
@@ -89,5 +88,4 @@ class RouteName {
   static const String wordStartedScreen = '/word_started';
   static const String wordGameScreen = '/word_game';
   static const String favouriteWordScreen = '/favourite_word';
-  static const String quizGame = '/quiz_game';
 }

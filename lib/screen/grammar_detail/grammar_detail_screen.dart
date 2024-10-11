@@ -98,10 +98,7 @@ class _GrammarDetailScreenState extends State<GrammarDetailScreen> {
                 context.read<QuizCubit>().startQuiz(
                       gameQuiz: widget.grammarModel.quiz,
                     );
-                Navigator.pushNamed(
-                  context,
-                  RouteName.quizGame,
-                );
+
               },
               child: Text(
                 'start_quiz'.tr(),

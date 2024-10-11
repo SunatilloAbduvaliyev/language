@@ -56,7 +56,7 @@ class _BasicGrammarItemState extends State<BasicGrammarItem> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.sizeOf(context).width;
-    double height = MediaQuery.sizeOf(context).height;
+    double sizeHeight = MediaQuery.sizeOf(context).height;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Stack(
@@ -64,9 +64,9 @@ class _BasicGrammarItemState extends State<BasicGrammarItem> {
         children: [
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
-            width: isAnimated ? width * 0.88 : width * 0.7,
-            height: isAnimated ? height * 0.6 : height * 0.4,
-            bottom: isAnimated ? 50.h : 200.h,
+            width: isAnimated ? width * 0.88 : width * 0.8,
+            height: isAnimated ? sizeHeight * 0.6 : sizeHeight * 0.4,
+            bottom: isAnimated ? height<650?20.h:50.h : 200.h,
             child: ExpandedContentWidget(
               basicGrammarModel: widget.basicGrammarModel,
               startButtonTap: openDetailPage,
@@ -74,7 +74,7 @@ class _BasicGrammarItemState extends State<BasicGrammarItem> {
           ),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 500),
-            bottom: isAnimated ? 250.h : 150.h,
+            bottom: isAnimated ? height<650?300.h:250.h : 150.h,
             child: GestureDetector(
               onTap: openDetailPage,
               onPanUpdate: (DragUpdateDetails details) {

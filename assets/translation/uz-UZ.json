@@ -55,5 +55,12 @@
   "is_check_word": "Lug'atlarni Tanlang",
   "error_word_list": "Ushbu lug'at mavjud emas!",
   "no_check_word": "Lug'atni Tanlang.",
-  "download_word": "Lug'atni yuklab oling"
+  "download_word": "Lug'atni yuklab oling",
+  "above": "Yuqoriga",
+  "drive": "Suring",
+  "start_lesson": "Darsni boshlang.",
+  "all_lesson": "Jami darslar",
+  "see_lesson": "Ko'rilgan darslar",
+  "quiz": "Bilimingizni sinang"
+
 }

@@ -22,4 +22,5 @@ class AppImages{
   //lottie
   static const String empty = 'assets/lottie/empty.json';
   static const String notification = 'assets/lottie/notification.json';
+  static const String arrowUp = 'assets/lottie/arrow_up.json';
 }

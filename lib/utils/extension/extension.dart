@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 double width = 0.0;
 double height = 0.0;
 
-extension Size on num {
+extension Sizes on num {
   //SizedBox height
   SizedBox boxH() => SizedBox(height: (this / 812) * height);
   //SizedBox width

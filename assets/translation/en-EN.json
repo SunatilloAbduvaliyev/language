@@ -55,6 +55,13 @@
   "is_check_word": "Select Dictionary",
   "error_word_list": "This dictionary is not available!",
   "no_check_word": "Select a dictionary.",
-  "download_word": "Download Dictionary"
+  "download_word": "Download Dictionary",
+  "above": "Above",
+  "drive": "Drive",
+  "start_lesson": "Start the lesson.",
+  "all_lesson": "Total lessons",
+  "see_lesson": "Lessons viewed",
+  "quiz": "Test your knowledge"
+
 
 }

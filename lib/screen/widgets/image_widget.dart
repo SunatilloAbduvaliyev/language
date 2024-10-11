@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:english/data/model/basic_grammar/basic_grammar_model.dart';
 import 'package:english/data/model/hero_tag.dart';
+import 'package:english/utils/extension/extension.dart';
 import 'package:english/utils/images/app_images.dart';
 import 'package:english/utils/style/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'hero_widget.dart';
 
@@ -42,26 +45,28 @@ class ImageWidget extends StatelessWidget {
         child: Stack(
           children: [
             buildImage(),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  buildTopText(),
-                  const Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        "location.latitude,",
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      Icon(Icons.location_on, color: Colors.white70),
-                      Text(
-                        "location.longitude,",
-                        style: TextStyle(color: Colors.white70),
-                      )
-                    ],
+                  Text(
+                    "above".tr(),
+                    style: AppTextStyle.bold.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  Lottie.asset(
+                    AppImages.arrowUp,
+                    width: 50.w,
+                    height: 50.h,
+                  ),
+                  Text(
+                    "drive".tr(),
+                    style: AppTextStyle.bold.copyWith(
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
@@ -83,19 +88,13 @@ class ImageWidget extends StatelessWidget {
                 return const CupertinoActivityIndicator();
               },
               errorWidget: (BuildContext context, String url, Object error) {
-                return Image.asset(AppImages.errorImage);
+                return Image.asset(
+                  AppImages.errorImage,
+                );
               },
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
-        ),
-      );
-
-  Widget buildTopText() => Text(
-        basicGrammarModel.themeName,
-        style: AppTextStyle.bold.copyWith(
-          color: Colors.white,
-          fontSize: 20,
         ),
       );
 }

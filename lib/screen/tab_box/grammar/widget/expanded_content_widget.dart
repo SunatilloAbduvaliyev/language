@@ -25,6 +25,14 @@ class ExpandedContentWidget extends StatelessWidget {
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 2,
+              spreadRadius: 1,
+              offset: Offset(5, 3),
+            ),
+          ]
         ),
         padding: const EdgeInsets.all(8),
         child: Column(

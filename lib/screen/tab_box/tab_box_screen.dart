@@ -46,6 +46,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
   @override
   void initState() {
     super.initState();
+    debugPrint("_________________________________ height $height, width $width");
     Future.microtask(() async {
       if (context.read<AuthCubit>().state.status == FormsStatus.pure) {
         String userDocUid = FirebaseAuth.instance.currentUser!.uid;
