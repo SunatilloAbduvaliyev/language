@@ -1,119 +1,38 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:english/cubit/quiz_cubit/quiz_cubit.dart';
+import 'package:english/cubit/quiz_cubit/quiz_state.dart';
+import 'package:english/screen/quiz_game/widget/quiz_build/quiz_draggable_build.dart';
+import 'package:english/screen/quiz_game/widget/quiz_build/quiz_test_build.dart';
+import 'package:english/screen/widgets/global_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void showQuizBottomSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return QuizBottomSheet();
-    },
-  );
-}
+class QuizGameScreen extends StatefulWidget {
+  const QuizGameScreen({super.key});
 
-class QuizBottomSheet extends StatefulWidget {
   @override
-  _QuizBottomSheetState createState() => _QuizBottomSheetState();
+  State<QuizGameScreen> createState() => _QuizGameScreenState();
 }
 
-class _QuizBottomSheetState extends State<QuizBottomSheet> {
-  String? _selectedOption; // Tanlangan variantni saqlash uchun
-
+class _QuizGameScreenState extends State<QuizGameScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Text(
-            'What is the meaning of UI UX Design?',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          QuizOption(
-            optionText: 'A. User Interface and User Experience',
-            value: 'A',
-            groupValue: _selectedOption,
-            onChanged: (value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-          ),
-          QuizOption(
-            optionText: 'B. User Introface and User Experience',
-            value: 'B',
-            groupValue: _selectedOption,
-            onChanged: (value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-          ),
-          QuizOption(
-            optionText: 'C. User Interface and Using Experience',
-            value: 'C',
-            groupValue: _selectedOption,
-            onChanged: (value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-          ),
-          QuizOption(
-            optionText: 'D. User Interface and User Experience',
-            value: 'D',
-            groupValue: _selectedOption,
-            onChanged: (value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-          ),
-          QuizOption(
-            optionText: 'E. Using Interface and Using Experience',
-            value: 'E',
-            groupValue: _selectedOption,
-            onChanged: (value) {
-              setState(() {
-                _selectedOption = value;
-              });
-            },
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context); // BottomSheetni yopish
-            },
-            child: Text('Submit Quiz'),
-          ),
-        ],
+    return Scaffold(
+      appBar: GlobalAppBar(
+        title: 'quiz_game'.tr(),
+        navigatePop: true,
       ),
-    );
-  }
-}
-
-class QuizOption extends StatelessWidget {
-  final String optionText;
-  final String value;
-  final String? groupValue;
-  final ValueChanged<String?> onChanged;
-
-  const QuizOption({
-    super.key,
-    required this.optionText,
-    required this.value,
-    required this.groupValue,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(optionText),
-      leading: Radio<String>(
-        value: value,
-        groupValue: groupValue,
-        onChanged: onChanged,
+      body: BlocBuilder<QuizCubit, QuizState>(
+        builder: (BuildContext context, QuizState state) {
+          if (true) {
+            return const QuizDraggableBuild();
+          }
+          return quizItemBuild(
+            grammarLength: state.gameQuiz.length,
+            quizModel: state.gameQuiz[state.quizIndex],
+            index: state.quizIndex,
+          );
+        },
       ),
     );
   }

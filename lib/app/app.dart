@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:english/bloc/user_bloc/user_bloc.dart';
+import 'package:english/cubit/active_button_cubit/active_button_cubit.dart';
 import 'package:english/cubit/auth_cubit/auth_cubit.dart';
 import 'package:english/cubit/change_item_cubit/change_item_cubit.dart';
 import 'package:english/cubit/grammar_cubit/grammar_cubit.dart';
@@ -31,6 +32,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (_)=>ChangeItemCubit()),
         BlocProvider(create: (_)=>WordGameCubit()),
         BlocProvider(create: (_)=>QuizCubit()),
+        BlocProvider(create: (_)=>ActiveButtonCubit())
       ],
       child: const MyApp(),
     );
