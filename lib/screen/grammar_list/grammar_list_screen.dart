@@ -17,7 +17,6 @@ class GrammarListScreen extends StatefulWidget {
 
   final Animation<double> animation;
   final BasicGrammarModel basicGrammarModel;
-
   @override
   State<GrammarListScreen> createState() => _GrammarListScreenState();
 }
@@ -27,7 +26,7 @@ class _GrammarListScreenState extends State<GrammarListScreen> {
   Widget build(BuildContext context) => SafeArea(
     child: Scaffold(
           extendBodyBehindAppBar: true,
-          backgroundColor: AppColors.c356899.withOpacity(0.6),
+          backgroundColor: AppColors.cF3F3F3,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             elevation: 0,

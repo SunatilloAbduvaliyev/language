@@ -14,7 +14,6 @@ import 'hero_widget.dart';
 
 Widget ratingLesson({
   required BasicGrammarModel basicGrammarModel,
-  Color? color = AppColors.c000000,
 }) =>
     HeroWidget(
       tag: HeroTag.addressLine1(basicGrammarModel.themeName),
@@ -36,7 +35,7 @@ Widget ratingLesson({
                   basicGrammarModel.grammars.isNotEmpty
                       ? "${((state.userData.learningEnglishIndex / basicGrammarModel.grammars.length) * 100).toStringAsFixed(0)}%"
                       : "0%",
-                  style: AppTextStyle.bold.copyWith(color: color),
+                  style: AppTextStyle.bold,
                 ),
                 progressColor: Colors.blueAccent,
               ),
@@ -46,18 +45,14 @@ Widget ratingLesson({
                 children: [
                   Text(
                     "${"all_lesson".tr()}: ${basicGrammarModel.grammars.length.toString()}",
-                    style: AppTextStyle.bold.copyWith(
-                      color: color,
-                    ),
+                    style: AppTextStyle.bold,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                   10.boxH(),
                   Text(
                     "${"see_lesson".tr()}: ${state.userData.learningEnglishIndex.toString()}",
-                    style: AppTextStyle.bold.copyWith(
-                      color: color,
-                    ),
+                    style: AppTextStyle.bold,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),

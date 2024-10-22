@@ -1,3 +1,4 @@
+import 'package:english/utils/color/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/user_bloc/user_bloc.dart';
@@ -33,9 +34,7 @@ Widget buildGrammarItem({
                 ),
                 Text(
                   grammarModel.subjectName,
-                  style: AppTextStyle.bold.copyWith(
-                    color: Colors.white,
-                  ),
+                  style: AppTextStyle.bold,
                 ),
                 Icon(
                   context
@@ -47,7 +46,7 @@ Widget buildGrammarItem({
                       ? Icons.lock_open
                       : Icons.lock,
                   size: 24,
-                  color: Colors.white,
+                  color: AppColors.c000000,
                 ),
               ],
             ),

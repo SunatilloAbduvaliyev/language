@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:english/utils/color/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/user_bloc/user_bloc.dart';
@@ -28,15 +29,12 @@ Widget buildQuizItem({
                 RichText(
                   text: TextSpan(
                     text: "quiz".tr(),
-                    style: AppTextStyle.bold.copyWith(
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyle.bold,
                     children: [
                       TextSpan(
                         text: "  ${(index + 1).toString()}",
                         style: AppTextStyle.bold.copyWith(
                           fontSize: 20,
-                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -52,7 +50,7 @@ Widget buildQuizItem({
                       ? Icons.lock_open
                       : Icons.lock,
                   size: 24,
-                  color: Colors.white,
+                  color: AppColors.c000000,
                 ),
               ],
             ),
